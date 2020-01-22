@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 
 
-class mart(models.Model):
-    name = models.CharField(blank=False, max_length=20)
+class Mart(models.Model):
+    name = models.CharField(max_length=20, blank=False)
     address = models.TextField(blank=False)
     tell = models.CharField(blank=True, max_length=12)
     phone = models.CharField(blank=True, max_length=11)
@@ -14,7 +14,7 @@ class mart(models.Model):
     upt_dttm = models.DateTimeField(blank=False, auto_now=True)
     upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
 
-class item(models.Model):
+class Item(models.Model):
     mart_id = models.ForeignKey('mart', models.DO_NOTHING)
     seq = models.IntegerField(blank=False)
     name = models.CharField(blank=False, max_length=20)
