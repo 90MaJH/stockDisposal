@@ -1,12 +1,14 @@
 from .models import *
 from django import forms
 
-class Mart(forms.ModelForm):
+class MartForm(forms.ModelForm):
     class Meta:
-        model = Mart
+        model = MartModel
         fields = ['name', 'address', 'tell', 'phone']
 
-class Item(forms.ModelForm):
+class ItemForm(forms.ModelForm):
+    choices = MartModel.objects.all().values('id', 'name')
+    marts = forms.CharField(label='select mart name', widget=forms.Select(choices=choices))
     class Meta:
-        model = Item
-        fields = ['name', 'price', 'expirationDate', 'stockYn']
+        model = ItemModel
+        fields = ['mart_id', 'name', 'price', 'expirationDate', 'stockYn']
