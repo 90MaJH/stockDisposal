@@ -7,8 +7,11 @@ class MartForm(forms.ModelForm):
         fields = ['name', 'address', 'tell', 'phone']
 
 class ItemForm(forms.ModelForm):
-    choices = MartModel.objects.all().values('id', 'name')
-    marts = forms.CharField(label='select mart name', widget=forms.Select(choices=choices))
+    choicesQueryset = MartModel.objects.all().values('id', 'name')
+    choicesDic = []
+    for choice in choicesQueryset:
+        choicesDic.append((choice['id'], choice['name']))
+    mart_id = forms.CharField(label='mart', widget=forms.Select(choices=choicesDic))
     class Meta:
         model = ItemModel
         fields = ['mart_id', 'name', 'price', 'expirationDate', 'stockYn']
