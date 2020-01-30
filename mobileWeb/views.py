@@ -5,7 +5,12 @@ from .forms import *
 
 def index(request):
     try:
-        return render(request, 'mobileWeb/index/index.html')
+        marts = MartModel.objects.all().values('id', 'name', 'address', 'tell', 'phone')
+        #print("marts " , marts)
+        #marts id별로 item을 담는 자료구조가 필요..뭘까?
+        items = ItemModel.objects.all().values('seq', 'name', 'price', 'expirationDate')
+        #print("items " , items)
+        return render(request, 'mobileWeb/index/index.html', {'marts':marts, 'items':items})
     except Exception as ex:
         print('Error occured : ', ex)
 

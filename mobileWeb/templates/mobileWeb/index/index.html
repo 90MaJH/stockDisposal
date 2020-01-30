@@ -32,21 +32,29 @@
   margin-bottom: 10px;
 ">
     <!-- this row will wrapping foreach-->
+    {% for mart in marts %} 
     <div class="row">
       <div class="col-xs-6 picture">
         <div style="width: 200px;height: 90px;overflow: hidden;padding: 0;max-width: 100%;height: auto;margin-top: 5px;margin-left: 5px;margin-right: 5px;margin-bottom: 5px;">
           <img src="./tree.png" alt="숲" class="img-responsive">
+          <h4>{{ mart.name }}</h4>
+          <p>{{ mart.address }}</p>
+          <p>{{ mart.tell }}</p>
         </div>
-      </div>
+      </div><!-- col-xs-6 picture end-->
       <div class="col-xs-6">
-        <!-- this content will changed python variable-->
-        <h4>GS25 강남메트로점</h4>
-        <p>전주비빔 삼각 김밥</p>
-        <p>가격 : 500원</p>
-        <p>유통기한 : ~01/18</p>
+        <!-- this content will changed python variable-->   
+        {% for item in items %} 
+        <p>이름:{{ item.name }}</p>
+        <p>가격:{{ item.price }}</p>
+        <p>유통기한:{{ item.expirationDate }}</p>
+        {% endfor %}
+        <!--
         <button type="button" name="detail_btn" value="detail_btn">더보기</button>
+        -->
       </div>
-    </div>
+    </div><!-- row end-->
+    {% endfor %}
   </div>
 
 
