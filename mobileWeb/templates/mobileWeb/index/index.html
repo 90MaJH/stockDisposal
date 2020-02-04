@@ -30,25 +30,26 @@
 
 <div style="width:90%; margin:auto">
     <!-- this row will wrapping foreach-->
-    {% for mart in marts %}
-        <div class="row">
-        <div class="col-xs-5">
-            {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
-                <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
-                <br>
-                <h3>{{ mart.name }}</h3>
-            {% endwith %}
-        </div>
-        <div class="col-xs-7">
-            {% for item in items %}
-                {% if mart.id == item.mart_id %}
-                    <h4 style="color:mediumpurple;">{{ item.name }}</h4>
-                    <h6>{{ item.price }}원</h6>
-                    <h6>{{ item.expirationDate|date:"m월d일 까지" }}</h6>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endfor %}
+    <div class="row">
+        {% for mart in marts %}
+
+            <div class="col-xs-5">
+                {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
+                    <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
+                    <br>
+                    <h3>{{ mart.name }}</h3>
+                {% endwith %}
+            </div>
+            <div class="col-xs-7">
+                {% for item in items %}
+                    {% if mart.id == item.mart_id %}
+                        <h4 style="color:mediumpurple;">{{ item.name }}</h4>
+                        <h6>{{ item.price }}원</h6>
+                        <h6>{{ item.expirationDate|date:"m월d일 까지" }}</h6>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
 
 
     </div>
