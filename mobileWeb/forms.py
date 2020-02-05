@@ -4,7 +4,7 @@ from django import forms
 class MartForm(forms.ModelForm):
     class Meta:
         model = MartModel
-        fields = ['name', 'address', 'tell', 'phone']
+        fields = ['name', 'address', 'tell', 'phone', 'xPosition', 'yPosition']
 
 class ItemForm(forms.ModelForm):
     choicesQueryset = MartModel.objects.all().values('id', 'name')
