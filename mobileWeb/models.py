@@ -17,8 +17,11 @@ class MartModel(models.Model):
     upt_dttm = models.DateTimeField(blank=False, auto_now=True)
     upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
 
+    def __str__(self):
+        return self.name
+
 class ItemModel(models.Model):
-    mart_id = models.ForeignKey('martModel', models.DO_NOTHING)
+    mart = models.ForeignKey('martModel', models.DO_NOTHING)
     seq = models.IntegerField(blank=False)
     name = models.CharField(blank=False, max_length=20)
     price = models.IntegerField(blank=False)
@@ -32,5 +35,5 @@ class ItemModel(models.Model):
 
     class Meta:
         unique_together = (
-            ('mart_id', 'seq')
+            ('mart', 'seq')
         )
