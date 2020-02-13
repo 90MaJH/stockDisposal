@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from pytz import timezone
 
 # Create your models here.
 
@@ -25,7 +27,7 @@ class ItemModel(models.Model):
     seq = models.IntegerField(blank=False)
     name = models.CharField(blank=False, max_length=20)
     price = models.IntegerField(blank=False)
-    expirationDate = models.DateField(blank=False)
+    expirationDate = models.DateTimeField(blank=False)
     stockYn = models.CharField(blank=False, max_length=1, default='Y')
     delete_yn = models.CharField(blank=False, default="N", max_length=1)
     ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
@@ -37,3 +39,8 @@ class ItemModel(models.Model):
         unique_together = (
             ('mart', 'seq')
         )
+
+    @property
+    def created_at_korean_time(self):
+        korean_timezone = timezone(settings.TIME_ZONE)
+        return self.created_at.astimezone(korean_timezone)

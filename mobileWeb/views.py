@@ -31,14 +31,12 @@ def registerItem(request):
         if request.method == 'POST':
             form = ItemForm(request.POST)
             if form.is_valid():
-                # mart = MartModel.objects.get(id__exact=form.cleaned_data['mart'])
                 mart = form.cleaned_data['mart']
                 seq = ItemModel.objects.filter(mart__exact=mart).values('seq').order_by('-seq')[:1]
                 if seq:
                     seq = seq[0]['seq']+1
                 else:
                     seq = 1
-                # form.save()
                 item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], price=form.cleaned_data['price'], expirationDate=form.cleaned_data['expirationDate'], stockYn=form.cleaned_data['stockYn'])
                 item.save()
                 form = ItemForm()
