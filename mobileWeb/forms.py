@@ -18,6 +18,9 @@ class MartForm(forms.ModelForm):
 
 class ItemForm(forms.ModelForm):
     mart = forms.ModelChoiceField(queryset=MartModel.objects.all(), to_field_name='name')
+    # choiceDic = [('Y', '판매중'), ('N', '판매완료')]
+    # stockYn = forms.CharField(label='stockYn', widget=forms.Select(choices=choiceDic))
     class Meta:
         model = ItemModel
-        fields = ['mart', 'name', 'price', 'expirationDate', 'stockYn']
+        fields = ['mart', 'name', 'price', 'expirationDate']
+        # fields = ['mart', 'name', 'price', 'expirationDate', 'stockYn']

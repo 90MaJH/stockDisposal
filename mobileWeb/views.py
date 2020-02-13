@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .forms import *
+from datetime import datetime
 
 # Create your views here.
 
 def index(request):
     try:
         marts = MartModel.objects.all().values('id', 'name', 'imageFileNo', 'xPosition', 'yPosition')
-        items = ItemModel.objects.filter(stockYn__exact='Y').values('mart', 'name', 'price', 'expirationDate').order_by('mart_id', 'seq')
+        items = ItemModel.objects.filter(stockYn__exact='Y').filter(expirationDate__gte=datetime.now()).values('mart', 'name', 'price', 'expirationDate').order_by('mart_id', 'seq')
 
         return render(request, 'mobileWeb/index/index.html', {'marts':marts, 'items':items})
     except Exception as ex:
