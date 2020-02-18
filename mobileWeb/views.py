@@ -38,7 +38,7 @@ def registerItem(request):
                     seq = seq[0]['seq']+1
                 else:
                     seq = 1
-                item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], price=form.cleaned_data['price'], expirationDate=form.cleaned_data['expirationDate'], stockYn=form.cleaned_data['stockYn'])
+                item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], price=form.cleaned_data['price'], expirationDate=form.cleaned_data['expirationDate'])
                 item.save()
                 form = ItemForm()
                 return render(request, 'mobileWeb/admin/register_item.html', {'form':form})
@@ -46,4 +46,4 @@ def registerItem(request):
             form = ItemForm()
             return render(request, 'mobileWeb/admin/register_item.html', {'form':form})
     except Exception as ex:
-        print('====777 : Error occured : ', ex)
+        print(': Error occured : ', ex)
