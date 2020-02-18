@@ -31,8 +31,7 @@
 
     {% for mart in marts %}
         <div class="row">
-            <div class="col-xs-5" data-toggle="modal" data-target="#myModal" data-whatever="{{ mart.id }}"
-                 style="border:1px solid black;">
+            <div class="col-xs-5" data-toggle="modal" data-target="#myModal" data-whatever="{{ mart.id }}">
                 {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
                     <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
                     <br>
