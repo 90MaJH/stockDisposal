@@ -73,35 +73,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#myModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var recipient = button.data('whatever'); // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this);
-            var html = "";
 
-            var martId = recipient;
-            var items = {{ items }};
-            console.log({{ items }});
-            {% for item in items %}
-                alert("sdf");
-            {% endfor %}
-            {#var itemMart = {{ item.mart }};#}
-            {#var itemName = {{ item.name }};#}
-            {#var itemPrice = {{ item.price }};#}
-            {#var itemExpirationDate = {{ item.expirationDate|date:\"m월d일 H시 까지\" }};#}
-            {#if (martId == itemMart) {#}
-            {#    html += "<h4 style='color:mediumpurple;'>" + itemName + "</h4>";#}
-            {#    html += "<h6>" + itemPrice + "원</h6>";#}
-            {#    html += '<h6>"+itempExpirationDate+"</h6>';#}
-            {#}#}
-
-
-            {#modal.find('.modal-body').text('New message to ' + recipient);#}
-            modal.find('.modal-body').text(html);
-            {#modal.find('.modal-body input').val(recipient)#}
-        });
 
         var mapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div
             mapOption = {
