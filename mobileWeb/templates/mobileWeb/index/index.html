@@ -17,8 +17,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40b9e58744cbe7d0cb367e51c07eb4"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40b9e58744cbe7d0cb367e51c07eb4"></script>
 
 </head>
 
@@ -73,32 +72,46 @@
 
 
 <script>
+    function writeModalData(martId, martName) {
+        document.getElementById('modal-body').innerHTML='';
+        var html = "";
+
+        document.getElementById('modal-title').innerHTML = martName;
+        {% for item in items %}
+            var itemMartId = {{ item.mart }};
+            var itemName = '{{ item.name }}';
+            var itemPrice = {{ item.price }};
+            var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
+            if (martId == itemMartId) {
+                var div = document.createElement('div');
+                html += "<h4 style='color:mediumpurple;'>" + itemName + "</h4>";
+                html += "<h6>" + itemPrice + "원</h6>";
+                html += "<h6>" + itemExpirationDate + "</h6>";
+                div.innerHTML = html;
+                document.getElementById('modal-body').appendChild(div);
+            }
+
+        {% endfor %}
+    };
+
+    function markerClick(martId,martName) {
+        $('#myModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            writeModalData(martId, martName);
+        });
+    }
+
     $(document).ready(function () {
         $('#myModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var mart = button.data('whatever'); // Extract info from data-* attributes
+
             mart = mart.split('_');
             var martId = mart[0];
             var martName = mart[1];
-            var modal = $(this);
-            var html = "";
+            {#var modal = $(this);#}
 
-            document.getElementById('modal-title').innerHTML = martName;
-            {% for item in items %}
-                var itemMartId = {{ item.mart }};
-                var itemName = '{{ item.name }}';
-                var itemPrice = {{ item.price }};
-                var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
-                if (martId == itemMartId) {
-                    var div = document.createElement('div');
-                    html += "<h4 style='color:mediumpurple;'>" + itemName + "</h4>";
-                    html += "<h6>" + itemPrice + "원</h6>";
-                    html += "<h6>" + itemExpirationDate + "</h6>";
-                    div.innerHTML = html;
-                    document.getElementById('modal-body').appendChild(div);
-                }
-
-            {% endfor %}
+            writeModalData(martId, martName);
         });
 
         var mapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div
@@ -116,11 +129,11 @@
         var markers = [];
 
         {% for mart in marts %}
-            addMarker(new kakao.maps.LatLng({{ mart.xPosition }}, {{ mart.yPosition }}), '{{ mart.name }}');
+            addMarker(new kakao.maps.LatLng({{ mart.xPosition }}, {{ mart.yPosition }}), '{{ mart.id }}', '{{ mart.name }}');
         {% endfor %}
 
 
-        function addMarker(position, text) {
+        function addMarker(position, martId, martName) {
 
             // 마커를 생성합니다
             var marker = new kakao.maps.Marker({
@@ -130,7 +143,7 @@
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
 
-            var iwContent = '<div style="padding:5px;"> ' + text + '</div>',
+            var iwContent = '<div style="padding:5px;" onclick="markerClick(' + martId + ', '+ martName+')"> ' + martName + '</div>',
                 iwPosition = position; //인포윈도우 표시 위치입니다
 
 // 인포윈도우를 생성합니다
