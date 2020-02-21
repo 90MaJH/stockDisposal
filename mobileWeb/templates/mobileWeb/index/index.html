@@ -95,6 +95,7 @@
     };
 
     function markerClick(martId,martName) {
+        console.log(martId);
         $('#myModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             writeModalData(martId, martName);
@@ -103,6 +104,7 @@
 
     $(document).ready(function () {
         $('#myModal').on('show.bs.modal', function (event) {
+            console.log(event);
             var button = $(event.relatedTarget); // Button that triggered the modal
             var mart = button.data('whatever'); // Extract info from data-* attributes
 
@@ -143,7 +145,11 @@
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
 
-            var iwContent = '<div style="padding:5px;" onclick="markerClick(' + martId + ', '+ martName+')"> ' + martName + '</div>',
+            var iwContent = `
+                <div style="padding:5px;" data-whatever="${martId}_${martName}" data-toggle="modal" data-target="#myModal">
+                ${martName}
+                </div>
+            `
                 iwPosition = position; //인포윈도우 표시 위치입니다
 
 // 인포윈도우를 생성합니다
