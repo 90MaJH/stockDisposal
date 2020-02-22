@@ -20,6 +20,164 @@
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40b9e58744cbe7d0cb367e51c07eb4"></script>
 
+
+    <script>
+        var timerId;
+
+        function writeMartModal(martId, martName) {
+            document.getElementById('modal-body').innerHTML = '';
+            var html = "";
+
+            document.getElementById('modal-title').innerHTML = martName;
+            {% for item in items %}
+                var itemMartId = {{ item.mart }};
+                var itemName = '{{ item.name }}';
+                var itemPrice = {{ item.price }};
+                var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
+                if (martId == itemMartId) {
+                    var div = document.createElement('div');
+                    html += `
+                    <h4 style='color:mediumpurple;'>${itemName}</h4>
+                    <h6>${itemPrice}원</h6>
+                    <h6>${itemExpirationDate}</h6>
+                `
+                    div.innerHTML = html;
+                    document.getElementById('modal-body').appendChild(div);
+                }
+
+            {% endfor %}
+        };
+
+        function markerClick(martId, martName) {
+            $('#martModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                writeMartModal(martId, martName);
+            });
+        }
+
+
+        function stopTimer() {
+            clearInterval(timerId);
+            document.getElementById('itemModal-title').innerHTML = '';
+        }
+
+        $(document).ready(function () {
+
+
+            $('#martModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var mart = button.data('whatever'); // Extract info from data-* attributes
+
+                mart = mart.split('_');
+                var martId = mart[0];
+                var martName = mart[1];
+                {#var modal = $(this);#}
+
+                writeMartModal(martId, martName);
+            });
+
+            $('#itemModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var variables = button.data('whatever'); // Extract info from data-* attributes
+
+                document.getElementById('itemModal-body').innerHTML = '';
+                var html = '';
+
+                variables = variables.split('_');
+                var martName = variables[0];
+                var itemId = variables[1];
+                var itemName = variables[2];
+
+                var div = document.createElement('div');
+                html += `
+                    ${martName}의 ${itemName}을 구매합니다.
+                `
+                div.innerHTML = html;
+                document.getElementById('itemModal-body').appendChild(div);
+
+                var timer = 30;
+                timerId = setInterval(countdown, 1000);
+
+                function countdown() {
+                    if (timer == -1) {
+                        clearTimeout(timerId);
+                        $('#itemModal').modal('hide')
+                    } else {
+                        document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
+                        timer--;
+                    }
+                }
+
+
+            });
+
+
+            var mapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div
+                mapOption = {
+                    center: new kakao.maps.LatLng(37.586611, 127.029212), // 이미지 지도의 중심좌표
+                    level: 3, // 이미지 지도의 확대 레벨
+                    marker: markers // 이미지 지도에 표시할 마커
+                };
+
+
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+            // 이미지 지도에 표시할 마커입니다
+            // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다
+            var markers = [];
+
+            {% for mart in marts %}
+                addMarker(new kakao.maps.LatLng({{ mart.xPosition }}, {{ mart.yPosition }}), '{{ mart.id }}', '{{ mart.name }}');
+            {% endfor %}
+
+
+            function addMarker(position, martId, martName) {
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    position: position
+                });
+
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+
+                var iwContent = `
+                <div style="padding:5px;" data-whatever="${martId}_${martName}" data-toggle="modal" data-target="#martModal">
+                ${martName}
+                </div>
+            `
+                iwPosition = position; //인포윈도우 표시 위치입니다
+
+// 인포윈도우를 생성합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    position: iwPosition,
+                    content: iwContent
+                });
+
+// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                infowindow.open(map, marker);
+
+                // 생성된 마커를 배열에 추가합니다
+                markers.push(marker);
+            }
+
+            function setMarkers(map) {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                }
+            }
+
+// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+            kakao.maps.event.addListener(map, 'dragend', function () {
+
+                // 지도 중심좌표를 얻어옵니다
+                var latlng = map.getCenter();
+            });
+        });
+
+    </script>
+
+
 </head>
 
 <body>
@@ -84,159 +242,14 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">구매확정</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소</button>
+                    <button type="button" class="btn btn-default">구매확정</button>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-
-
-<script>
-    function writeMartModal(martId, martName) {
-        document.getElementById('modal-body').innerHTML = '';
-        var html = "";
-
-        document.getElementById('modal-title').innerHTML = martName;
-        {% for item in items %}
-            var itemMartId = {{ item.mart }};
-            var itemName = '{{ item.name }}';
-            var itemPrice = {{ item.price }};
-            var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
-            if (martId == itemMartId) {
-                var div = document.createElement('div');
-                html += `
-                    <h4 style='color:mediumpurple;'>${itemName}</h4>
-                    <h6>${itemPrice}원</h6>
-                    <h6>${itemExpirationDate}</h6>
-                `
-                div.innerHTML = html;
-                document.getElementById('modal-body').appendChild(div);
-            }
-
-        {% endfor %}
-    };
-
-    function markerClick(martId, martName) {
-        $('#martModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            writeMartModal(martId, martName);
-        });
-    }
-
-    $(document).ready(function () {
-        $('#martModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var mart = button.data('whatever'); // Extract info from data-* attributes
-
-            mart = mart.split('_');
-            var martId = mart[0];
-            var martName = mart[1];
-            {#var modal = $(this);#}
-
-            writeMartModal(martId, martName);
-        });
-
-        $('#itemModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var variables = button.data('whatever'); // Extract info from data-* attributes
-
-            document.getElementById('itemModal-body').innerHTML = '';
-            var html = '';
-
-            variables = variables.split('_');
-            var martName = variables[0];
-            var itemId = variables[1];
-            var itemName = variables[2];
-
-            var div = document.createElement('div');
-            html += `
-                    ${martName}의 ${itemName}을 구매합니다.
-                `
-            div.innerHTML = html;
-            document.getElementById('itemModal-body').appendChild(div);
-
-            var timer = 30;
-            var elem = document.getElementById('itemModal-title');
-            var timerId = setInterval(countdown, 1000);
-
-            function countdown() {
-                if (timer == -1) {
-                    clearTimeout(timerId);
-                    $('#itemModal').modal('hide')
-                } else {
-                    elem.innerHTML = timer + ' seconds remaining';
-                    timer--;
-                }
-            }
-        });
-
-        var mapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(37.586611, 127.029212), // 이미지 지도의 중심좌표
-                level: 3, // 이미지 지도의 확대 레벨
-                marker: markers // 이미지 지도에 표시할 마커
-            };
-
-
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-        // 이미지 지도에 표시할 마커입니다
-        // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다
-        var markers = [];
-
-        {% for mart in marts %}
-            addMarker(new kakao.maps.LatLng({{ mart.xPosition }}, {{ mart.yPosition }}), '{{ mart.id }}', '{{ mart.name }}');
-        {% endfor %}
-
-
-        function addMarker(position, martId, martName) {
-
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                position: position
-            });
-
-            // 마커가 지도 위에 표시되도록 설정합니다
-            marker.setMap(map);
-
-            var iwContent = `
-                <div style="padding:5px;" data-whatever="${martId}_${martName}" data-toggle="modal" data-target="#martModal">
-                ${martName}
-                </div>
-            `
-            iwPosition = position; //인포윈도우 표시 위치입니다
-
-// 인포윈도우를 생성합니다
-            var infowindow = new kakao.maps.InfoWindow({
-                position: iwPosition,
-                content: iwContent
-            });
-
-// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-            infowindow.open(map, marker);
-
-            // 생성된 마커를 배열에 추가합니다
-            markers.push(marker);
-        }
-
-        function setMarkers(map) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
-            }
-        }
-
-// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-        kakao.maps.event.addListener(map, 'dragend', function () {
-
-            // 지도 중심좌표를 얻어옵니다
-            var latlng = map.getCenter();
-        });
-    });
-
-</script>
 
 
 </body>
