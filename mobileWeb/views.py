@@ -11,7 +11,7 @@ def index(request):
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
                                                                    'yPosition')
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
-            expirationDate__gte=datetime.now()).values('mart', 'name', 'price', 'expirationDate').order_by('mart_id',
+            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'price', 'expirationDate').order_by('mart_id',
                                                                                                            'seq')
 
         return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
@@ -84,6 +84,15 @@ def deleteMart(request):
         mart = MartModel.objects.filter(id__exact=request.POST['mart'])[0]
         mart.use_yn = 'N'
         mart.save()
+        return HttpResponse("1")
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+def purchaseItem(request):
+    try:
+        item = ItemModel.objects.filter(id__exact=request.POST['item'])[0]
+        item.stockYn = 'N'
+        item.save()
         return HttpResponse("1")
     except Exception as ex:
         print('Error occured : ', ex)

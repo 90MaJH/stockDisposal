@@ -24,6 +24,27 @@
     <script>
         var timerId;
 
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
         function writeMartModal(martId, martName) {
             document.getElementById('modal-body').innerHTML = '';
             var html = "";
@@ -61,8 +82,32 @@
             document.getElementById('itemModal-title').innerHTML = '';
         }
 
-        $(document).ready(function () {
+        function purchaseItem() {
+            itemId = $('#purchaseConfirm').data('item');
+            $.ajax({
+                type: 'POST',
+                url: '/purchaseItem',
+                data: {
+                    item: itemId
+                },
+                success: function (data) {
+                    if (data == "1") location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("arjax error : " + textStatus + "\n" + errorThrown);
+                },
+            });
+        };
 
+        $(document).ready(function () {
+            var csrftoken = getCookie('csrftoken');
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
 
             $('#martModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
@@ -94,6 +139,7 @@
                 `
                 div.innerHTML = html;
                 document.getElementById('itemModal-body').appendChild(div);
+                $('#purchaseConfirm').data('item', itemId);
 
                 var timer = 30;
                 timerId = setInterval(countdown, 1000);
@@ -243,7 +289,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소</button>
-                    <button type="button" class="btn btn-default">구매확정</button>
+                    <button type="button" class="btn btn-default" id="purchaseConfirm" onclick="purchaseItem()">구매확정
+                    </button>
                 </div>
             </div>
         </div>
