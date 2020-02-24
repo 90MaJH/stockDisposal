@@ -51,18 +51,22 @@
 
             document.getElementById('modal-title').innerHTML = martName;
             {% for item in items %}
-                var itemId = {{ item.id }};
                 var itemMartId = {{ item.mart }};
-                var itemName = '{{ item.name }}';
-                var itemPrice = {{ item.price }};
-                var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
                 if (martId == itemMartId) {
+                    var itemId = {{ item.id }};
+                    var itemName = '{{ item.name }}';
+                    var itemPrice = {{ item.price }};
+                    var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
                     var div = document.createElement('div');
                     html += `
+                    <div data-toggle="modal" data-target="#itemModal" data-whatever="${martName}_${itemId}_${itemName}">
+                        <h4 style = "color:mediumpurple;" > ${itemName} </h4>
+                    <h6> ${itemPrice}원 </h6>
+                    <h6> ${itemExpirationDate} </h6>
+                    </div>
                     {#<h4 style='color:mediumpurple;' onclick='itemClick(${itemId})'>${itemName}</h4>#}
-                    <h4 style='color:mediumpurple;'>${itemName}</h4>
-                    <h6>${itemPrice}원</h6>
-                    <h6>${itemExpirationDate}</h6>
+                    {#<h6>${itemPrice}원</h6>#}
+                    {#<h6>${itemExpirationDate}</h6>#}
                 `
                     div.innerHTML = html;
                     document.getElementById('modal-body').appendChild(div);
@@ -79,40 +83,6 @@
         }
 
         function itemClick(itemId) {
-            $.ajax({
-                type: 'POST',
-                url: '/selectItem',
-                data: {
-                    item: itemId
-                },
-                success: function (data) {
-                    if (data == "1") {
-                        alert('이미 판매된 상품입니다.');
-                    } else if (data == "2") {
-                        alert('삭제된 상품입니다.');
-                    } else {
-                        var name = prompt('정말로 구매하시겠습니까?');
-                        setTimeout(function(){name.close();}, 3);
-                        $('#purchaseConfirm').data('item', itemId);
-
-                        var timer = 30;
-                        timerId = setInterval(countdown, 1000);
-
-                        function countdown() {
-                            if (timer == -1) {
-                                clearTimeout(timerId);
-                                $('#itemModal').modal('hide')
-                            } else {
-                                document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
-                                timer--;
-                            }
-                        }
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("arjax error : " + textStatus + "\n" + errorThrown);
-                },
-            });
 
 
         }
@@ -176,26 +146,46 @@
                 var itemId = variables[1];
                 var itemName = variables[2];
 
-                var div = document.createElement('div');
-                html += `
+                $.ajax({
+                    type: 'POST',
+                    url: '/selectItem',
+                    data: {
+                        item: itemId
+                    },
+                    success: function (data) {
+                        if (data == "1") {
+                            alert('이미 판매된 상품입니다.');
+                        } else if (data == "2") {
+                            alert('삭제된 상품입니다.');
+                        } else {
+
+                            var div = document.createElement('div');
+                            html += `
                     ${martName}의 ${itemName}을 구매합니다.
                 `
-                div.innerHTML = html;
-                document.getElementById('itemModal-body').appendChild(div);
-                $('#purchaseConfirm').data('item', itemId);
+                            div.innerHTML = html;
+                            document.getElementById('itemModal-body').appendChild(div);
+                            $('#purchaseConfirm').data('item', itemId);
 
-                var timer = 30;
-                timerId = setInterval(countdown, 1000);
+                            var timer = 30;
+                            timerId = setInterval(countdown, 1000);
 
-                function countdown() {
-                    if (timer == -1) {
-                        clearTimeout(timerId);
-                        $('#itemModal').modal('hide')
-                    } else {
-                        document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
-                        timer--;
-                    }
-                }
+                            function countdown() {
+                                if (timer == -1) {
+                                    clearTimeout(timerId);
+                                    $('#itemModal').modal('hide')
+                                } else {
+                                    document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
+                                    timer--;
+                                }
+                            }
+
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("arjax error : " + textStatus + "\n" + errorThrown);
+                    },
+                });
 
 
             });
@@ -290,8 +280,7 @@
             <div class="col-xs-7" style="height:200px; overflow:scroll">
                 {% for item in items %}
                     {% if mart.id == item.mart %}
-                        <div data-toggle="modal" data-target="#itemModal"
-                             data-whatever="{{ mart.name }}_{{ item.id }}_{{ item.name }}">
+                        <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
                             <h6>{{ item.price }}원</h6>
                             <h6>{{ item.expirationDate|date:"m월d일 H시 까지" }}</h6>
