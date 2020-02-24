@@ -283,7 +283,7 @@
                 {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
                     <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
                     <br>
-                    <h3>{{ mart.name }}</h3>
+                    <h3>{{ mart.id }}_{{ mart.name }}</h3>
                 {% endwith %}
             </div>
 
