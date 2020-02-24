@@ -22,6 +22,11 @@ class MartModel(models.Model):
     def __str__(self):
         return self.name
 
+    def as_json(self):
+        return dict(
+            id=self.id,
+            name=self.name)
+
 class ItemModel(models.Model):
     mart = models.ForeignKey('martModel', models.DO_NOTHING)
     seq = models.IntegerField(blank=False)
@@ -34,6 +39,12 @@ class ItemModel(models.Model):
     ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
     upt_dttm = models.DateTimeField(blank=False, auto_now=True)
     upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+
+    def as_json(self):
+        return dict(
+            mart=self.mart.as_json(),
+            id=self.id,
+            name=self.name)
 
     class Meta:
         unique_together = (

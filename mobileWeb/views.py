@@ -3,6 +3,10 @@ from .forms import *
 from datetime import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.core import serializers
+import json
+
 
 
 # Create your views here.
@@ -96,5 +100,21 @@ def purchaseItem(request):
         item.stockYn = 'N'
         item.save()
         return HttpResponse("1")
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+def selectItem(request):
+    try:
+        item = ItemModel.objects.filter(id__exact=request.POST['item'])[0]
+        if item.stockYn == 'N':
+            return HttpResponse("1"); #이미 판매된 상품입니다.
+        elif item.use_yn == 'N':
+            return HttpResponse("2");  # 삭제된 상품입니다.
+        else:
+            item = item.as_json()
+            return HttpResponse(json.dumps(item), content_type="application/json")
+
+            # items = [item.as_json() for item in item]
+            # return HttpResponse(json.dumps(items), content_type="application/json")
     except Exception as ex:
         print('Error occured : ', ex)
