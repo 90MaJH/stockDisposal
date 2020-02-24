@@ -155,10 +155,11 @@
                     success: function (data) {
                         if (data == "1") {
                             alert('이미 판매된 상품입니다.');
+                            return;
                         } else if (data == "2") {
                             alert('삭제된 상품입니다.');
+                            return;
                         } else {
-
                             var div = document.createElement('div');
                             html += `
                     ${martName}의 ${itemName}을 구매합니다.
@@ -179,7 +180,6 @@
                                     timer--;
                                 }
                             }
-
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
