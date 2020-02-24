@@ -111,6 +111,18 @@
         };
 
         $(document).ready(function () {
+            var notify = '1. MVP 기간이기 때문에 실제 재고 수량과 맞지 않을 수 있습니다. 새로고침 기능을 자주 사용하시면 오차를 최소화 할 수 있습니다.';
+            notify += '\n\n';
+            notify += '2. 사용방법';
+            notify += '\n';
+            notify += '1) 매장 이미지를 클릭해주세요.';
+            notify += '\n';
+            notify += '2) 구매하고자 하는 상품을 선택해주세요.';
+            notify += '\n';
+            notify += '3) 구매확인 팝업을 점원에게 확인시켜주세요. 이 창은 30초 안에 닫히도록 되어있습니다.';
+            notify += '\n';
+            notify += '4) 점원의 확인이 끝나면 할인된 금액으로 상품을 구매하고 구매확정 버튼을 눌러주세요.';
+            alert(notify);
             {#setTimeout("location.reload()",30 * 1000);#}
 
             var csrftoken = getCookie('csrftoken');
