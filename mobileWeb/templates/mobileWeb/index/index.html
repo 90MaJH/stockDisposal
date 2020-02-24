@@ -155,9 +155,11 @@
                     success: function (data) {
                         if (data == "1") {
                             alert('이미 판매된 상품입니다.');
+                            $('#itemModal').modal('hide');
                             return;
                         } else if (data == "2") {
                             alert('삭제된 상품입니다.');
+                            $('#itemModal').modal('hide');
                             return;
                         } else {
                             var div = document.createElement('div');
