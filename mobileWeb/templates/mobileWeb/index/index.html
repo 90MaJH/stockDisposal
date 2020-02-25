@@ -95,20 +95,24 @@
         }
 
         function purchaseItem() {
-            itemId = $('#itemModal-title').data('item');
-            $.ajax({
-                type: 'POST',
-                url: '/purchaseItem',
-                data: {
-                    item: itemId
-                },
-                success: function (data) {
-                    if (data == "1") location.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("arjax error : " + textStatus + "\n" + errorThrown);
-                },
-            });
+            var conf = confirm("정말 구매하시겠습니까?");
+            if (conf) {
+                itemId = $('#itemModal-title').data('item');
+                $.ajax({
+                    type: 'POST',
+                    url: '/purchaseItem',
+                    data: {
+                        item: itemId
+                    },
+                    success: function (data) {
+                        if (data == "1") location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("arjax error : " + textStatus + "\n" + errorThrown);
+                    },
+                });
+            }
+
         };
 
         $(document).ready(function () {
@@ -183,6 +187,7 @@
                         } else {
                             var div = document.createElement('div');
                             html += `
+                            <h4 style="color:purple;">이 화면을 점원에게 보여주세요.</h4>
                     ${martName}의 ${itemName}을 구매합니다.
                 `
                             div.innerHTML = html;

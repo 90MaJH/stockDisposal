@@ -66,7 +66,7 @@ def delete(request):
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
                                                                    'yPosition')
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
-            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'price', 'expirationDate').order_by('mart_id',
+            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate').order_by('mart_id',
                                                                                                            'seq')
 
         return render(request, 'mobileWeb/admin/delete.html', {'marts': marts, 'items': items})
