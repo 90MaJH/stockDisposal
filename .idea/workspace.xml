@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/admin/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/admin/delete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,7 @@
       <workItem from="1580520496061" duration="991000" />
       <workItem from="1580642300545" duration="11894000" />
       <workItem from="1581485133235" duration="384000" />
-      <workItem from="1581491982832" duration="40972000" />
+      <workItem from="1581491982832" duration="41182000" />
     </task>
     <servers />
   </component>
