@@ -47,7 +47,7 @@
 
         function writeMartModal(martId, martName) {
             document.getElementById('modal-body').innerHTML = '';
-            var html = "";
+
 
             document.getElementById('modal-title').innerHTML = martName;
             {% for item in items %}
@@ -57,6 +57,7 @@
                     var itemName = '{{ item.name }}';
                     var itemPrice = {{ item.price }};
                     var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
+                    var html = "";
                     var div = document.createElement('div');
                     html += `
                     <div data-toggle="modal" data-target="#itemModal" data-whatever="${martName}_${itemId}_${itemName}">
