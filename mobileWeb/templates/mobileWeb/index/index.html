@@ -288,9 +288,9 @@
     <!-- this row will wrapping foreach-->
 
     {% for mart in marts %}
-        <div class="row">
-            <div class="col-xs-5" data-toggle="modal" data-target="#martModal"
+        <div class="row" data-toggle="modal" data-target="#martModal"
                  data-whatever="{{ mart.id }}_{{ mart.name }}">
+            <div class="col-xs-5" >
                 {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
                     <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
                     <br>
