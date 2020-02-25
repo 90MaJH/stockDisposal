@@ -16,7 +16,7 @@ def index(request):
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
                                                                    'yPosition')
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
-            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'price', 'expirationDate', 'comment').order_by('mart_id',
+            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment').order_by('mart_id',
                                                                                                            'seq')
 
         return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
@@ -49,8 +49,8 @@ def registerItem(request):
                     seq = seq[0]['seq'] + 1
                 else:
                     seq = 1
-                item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], price=form.cleaned_data['price'],
-                                 expirationDate=form.cleaned_data['expirationDate'], comment=form.cleaned_data['comment'])
+                item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], originalPrice=form.cleaned_data['originalPrice'],
+                                 discountPrice=form.cleaned_data['discountPrice'], expirationDate=form.cleaned_data['expirationDate'], comment=form.cleaned_data['comment'])
                 item.save()
                 form = ItemForm()
                 return render(request, 'mobileWeb/admin/register_item.html', {'form': form})

@@ -55,7 +55,7 @@
                 if (martId == itemMartId) {
                     var itemId = {{ item.id }};
                     var itemName = '{{ item.name }}';
-                    var itemPrice = {{ item.price }};
+                    var itemPrice = {{ item.discountPrice }};
                     var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}';
                     var html = "";
                     var div = document.createElement('div');
@@ -95,7 +95,7 @@
         }
 
         function purchaseItem() {
-            itemId = $('#purchaseConfirm').data('item');
+            itemId = $('#itemModal-title').data('item');
             $.ajax({
                 type: 'POST',
                 url: '/purchaseItem',
@@ -187,7 +187,7 @@
                 `
                             div.innerHTML = html;
                             document.getElementById('itemModal-body').appendChild(div);
-                            $('#purchaseConfirm').data('item', itemId);
+                            $('#itemModal-title').data('item', itemId);
 
                             var timer = 30;
                             timerId = setInterval(countdown, 1000);
@@ -289,8 +289,8 @@
 
     {% for mart in marts %}
         <div class="row" data-toggle="modal" data-target="#martModal"
-                 data-whatever="{{ mart.id }}_{{ mart.name }}">
-            <div class="col-xs-5" >
+             data-whatever="{{ mart.id }}_{{ mart.name }}">
+            <div class="col-xs-5">
                 {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
                     <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
                     <br>
@@ -303,7 +303,8 @@
                     {% if mart.id == item.mart %}
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
-                            <h6>{{ item.price }}원</h6>
+                            <h6>정가 : {{ item.orginalPrice }}원</h6>
+                            <h6>할인판매가 : {{ item.discountPrice }}원</h6>
                             <h6>{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}</h6>
                             <h6 style="color:red">{{ item.comment }}</h6>
                         </div>
@@ -336,14 +337,13 @@
             <div class="modal-content">
                 <div class="itemModal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="itemModal-title" id="itemModal-title"></h4>
+                    <h4 class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></h4>
                 </div>
                 <div class="itemModal-body" id="itemModal-body">
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소</button>
-                    <button type="button" class="btn btn-default" id="purchaseConfirm" onclick="purchaseItem()">구매확정
                     </button>
                 </div>
             </div>
