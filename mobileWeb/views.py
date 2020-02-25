@@ -10,7 +10,7 @@ import json
 
 
 # Create your views here.
-
+@csrf_exempt
 def index(request):
     try:
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
@@ -23,7 +23,7 @@ def index(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
-
+@csrf_exempt
 def registerMart(request):
     try:
         if request.method == 'POST':
@@ -37,7 +37,7 @@ def registerMart(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
-
+@csrf_exempt
 def registerItem(request):
     try:
         if request.method == 'POST':
@@ -60,7 +60,7 @@ def registerItem(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
-
+@csrf_exempt
 def delete(request):
     try:
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
@@ -73,7 +73,7 @@ def delete(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
-
+@csrf_exempt
 def deleteItem(request):
     try:
         item = ItemModel.objects.filter(id__exact=request.POST['item'])[0]
@@ -83,7 +83,7 @@ def deleteItem(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
-
+@csrf_exempt
 def deleteMart(request):
     try:
         mart = MartModel.objects.filter(id__exact=request.POST['mart'])[0]
@@ -103,6 +103,7 @@ def purchaseItem(request):
     except Exception as ex:
         print('Error occured : ', ex)
 
+@csrf_exempt
 def selectItem(request):
     try:
         item = ItemModel.objects.filter(id__exact=request.POST['item'])[0]
