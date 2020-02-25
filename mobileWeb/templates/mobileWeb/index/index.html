@@ -56,7 +56,7 @@
                     var itemId = {{ item.id }};
                     var itemName = '{{ item.name }}';
                     var itemPrice = {{ item.price }};
-                    var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 까지" }}';
+                    var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}';
                     var html = "";
                     var div = document.createElement('div');
                     html += `
@@ -298,7 +298,7 @@
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
                             <h6>{{ item.price }}원</h6>
-                            <h6>{{ item.expirationDate|date:"m월d일 H시 까지" }}</h6>
+                            <h6>{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}</h6>
                             <h6 style="color:red">{{ item.comment }}</h6>
                         </div>
                     {% endif %}
