@@ -30,11 +30,11 @@ class MartModel(models.Model):
 class ItemModel(models.Model):
     mart = models.ForeignKey('martModel', models.DO_NOTHING)
     seq = models.IntegerField(blank=False)
-    name = models.CharField(blank=False, max_length=20)
+    name = models.CharField(blank=False, max_length=30)
     originalPrice = models.IntegerField(blank=False, default=0)
     discountPrice = models.IntegerField(blank=False, default=0)
     expirationDate = models.DateTimeField(blank=False)
-    comment = models.CharField(blank=False, max_length=20, default='')
+    comment = models.CharField(blank=False, max_length=30, default='')
     stock = models.IntegerField(blank=False, default=1)
     stockYn = models.CharField(blank=False, max_length=1, default='Y')
     use_yn = models.CharField(blank=False, default="Y", max_length=1)
