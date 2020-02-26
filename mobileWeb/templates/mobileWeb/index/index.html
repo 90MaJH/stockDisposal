@@ -46,6 +46,7 @@
         }
 
         function writeMartModal(martId, martName) {
+            console.log("martID : "+martId);
             document.getElementById('modal-body').innerHTML = '';
 
 
@@ -82,12 +83,6 @@
                 writeMartModal(martId, martName);
             });
         }
-
-        function itemClick(itemId) {
-
-
-        }
-
 
         function stopTimer() {
             clearInterval(timerId);
