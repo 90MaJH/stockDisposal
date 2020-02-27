@@ -58,3 +58,12 @@ class ItemModel(models.Model):
     def created_at_korean_time(self):
         korean_timezone = timezone(settings.TIME_ZONE)
         return self.created_at.astimezone(korean_timezone)
+
+class StatisticsModel(models.Model):
+    action = models.CharField(blank=False, max_length=20, default='default')
+    browser = models.CharField(blank=False, max_length=50, default='default')
+    ip = models.CharField(blank=False, max_length=15, default='000.000.000.000')
+    ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
+    ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    upt_dttm = models.DateTimeField(blank=False, auto_now=True)
+    upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')

@@ -3,9 +3,8 @@ from .forms import *
 from datetime import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.core import serializers
 import json
+from ipware.ip import get_ip
 
 
 
@@ -18,6 +17,9 @@ def index(request):
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
             expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment').order_by('mart_id',
                                                                                                            'seq')
+
+        statistics = StatisticsModel(action='openIndexPage')
+        statistics.save()
 
         return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
     except Exception as ex:
@@ -117,5 +119,25 @@ def selectItem(request):
 
             # items = [item.as_json() for item in item]
             # return HttpResponse(json.dumps(items), content_type="application/json")
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+@csrf_exempt
+def addStatistics(request):
+    try:
+        action = request.POST['action']
+        browser = request.META['HTTP_USER_AGENT']
+        ip = get_ip(request)
+        statistics = StatisticsModel(action=action, browser=browser, ip=ip)
+        statistics.save()
+        return HttpResponse("1")
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+@csrf_exempt
+def viewStatistics(request):
+    try:
+        statistics = StatisticsModel.objects.all()
+        return render(request, 'mobileWeb/admin/viewStatistics.html', {'statistics':statistics})
     except Exception as ex:
         print('Error occured : ', ex)

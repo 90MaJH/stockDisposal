@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="border:1px solid black">
+{% for statistic in statistics %}
+    <div>
+    <h5>{{ statistic.action }}</h5>
+    </div>
+    <div>
+    {{ statistic.browser }}
+    </div>
+    <div>
+    {{ statistic.ip }}
+    </div>
+    <div>
+    {{ statistic.ins_dttm }}
+    </div>
+
+{% endfor %}
+</body>
+</html>

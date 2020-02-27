@@ -82,9 +82,6 @@
                     <h6> ${itemPrice}원 </h6>
                     <h6> ${itemExpirationDate} </h6>
                     </div>
-                    {#<h4 style='color:mediumpurple;' onclick='itemClick(${itemId})'>${itemName}</h4>#}
-                    {#<h6>${itemPrice}원</h6>#}
-                    {#<h6>${itemExpirationDate}</h6>#}
                 `
                     div.innerHTML = html;
                     document.getElementById('modal-body').appendChild(div);
@@ -94,6 +91,7 @@
         };
 
         function markerClick(martId, martName) {
+            addStatistics('markerClick');
             $('#martModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 writeMartModal(martId, martName);
@@ -106,6 +104,7 @@
         }
 
         function purchaseItem() {
+            addStatistics('purchaseItem');
             var conf = confirm("정말 구매하시겠습니까?");
             if (conf) {
                 itemId = $('#itemModal-title').data('item');
@@ -123,7 +122,21 @@
                     },
                 });
             }
+        };
 
+        function addStatistics(action) {
+            $.ajax({
+                type: 'POST',
+                url: '/addStatistics',
+                data: {
+                    action: action
+                },
+                success: function (data) {
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("arjax error : " + textStatus + "\n" + errorThrown);
+                },
+            });
         };
 
         $(document).ready(function () {
@@ -157,6 +170,7 @@
             });
 
             $('#martModal').on('show.bs.modal', function (event) {
+                addStatistics('loadMartModal');
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var mart = button.data('whatever'); // Extract info from data-* attributes
 
@@ -169,6 +183,7 @@
             });
 
             $('#itemModal').on('show.bs.modal', function (event) {
+                addStatistics('loadItemModal');
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var variables = button.data('whatever'); // Extract info from data-* attributes
 

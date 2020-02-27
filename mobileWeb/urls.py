@@ -11,4 +11,6 @@ urlpatterns = [
     path('deleteItem', views.deleteItem, name='deleteItem'),
     path('purchaseItem', views.purchaseItem, name='purchaseItem'),
     path('selectItem', views.selectItem, name='selectItem'),
+    path('addStatistics', views.addStatistics, name='addStatistics'),
+    path('viewStatistics', views.viewStatistics, name='viewStatistics'),
 ]
