@@ -17,8 +17,9 @@ def index(request):
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
             expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment').order_by('mart_id',
                                                                                                            'seq')
-
-        statistics = StatisticsModel(action='openIndexPage')
+        browser = request.META['HTTP_USER_AGENT']
+        ip = get_ip(request)
+        statistics = StatisticsModel(action='openIndexPage', browser=browser, ip=ip)
         statistics.save()
 
         return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
