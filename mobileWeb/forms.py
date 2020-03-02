@@ -24,3 +24,10 @@ class ItemForm(forms.ModelForm):
         model = ItemModel
         fields = ['mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment']
         # fields = ['mart', 'name', 'price', 'expirationDate', 'stockYn']
+
+class ImtPosRegisterForm(forms.Form):
+    companyCode = forms.CharField(max_length=7)
+    itemCode = forms.CharField(max_length=7)
+    barcode = forms.CharField(max_length=20)
+    originalPrice = forms.IntegerField()
+    discountPrice = forms.IntegerField(required=False)

@@ -5,6 +5,7 @@ from pytz import timezone
 # Create your models here.
 
 
+
 class MartModel(models.Model):
     name = models.CharField(max_length=20, blank=False)
     address = models.TextField(blank=False)

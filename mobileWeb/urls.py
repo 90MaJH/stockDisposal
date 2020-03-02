@@ -13,4 +13,7 @@ urlpatterns = [
     path('selectItem', views.selectItem, name='selectItem'),
     path('addStatistics', views.addStatistics, name='addStatistics'),
     path('viewStatistics', views.viewStatistics, name='viewStatistics'),
+
+    path('imtPosRegister', views.imtPosRegister, name='imtPosRegister'),
+    path('imtPosRegisterTest', views.imtPosRegisterTest, name='imtPosRegisterTest'),
 ]
