@@ -45,6 +45,7 @@
 
     <script>
         var timerId;
+        var map;
 
         function getCookie(name) {
             var cookieValue = null;
@@ -146,6 +147,16 @@
                 },
             });
         };
+
+        function martClick(mart) {
+            // 이동할 위도 경도 위치를 생성합니다
+            xPosition = mart.xPosition;
+            yPosition = mart.yPosition;
+            var moveLatLon = new kakao.maps.LatLng(xPosition, yPosition);
+
+            // 지도 중심을 이동 시킵니다
+            map.setCenter(moveLatLon);
+        }
 
         $(document).ready(function () {
             var notify = 'S2+.."사용방법"..+S2';
@@ -255,7 +266,7 @@
                 };
 
 
-            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
             // 이미지 지도에 표시할 마커입니다
             // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다
@@ -316,9 +327,8 @@
     <!-- this row will wrapping foreach-->
 
     {% for mart in marts %}
-        <div class="row" data-toggle="modal" data-target="#martModal"
-             data-whatever="{{ mart.id }}_{{ mart.name }}">
-            <div class="col-xs-5">
+        <div class="row">
+            <div class="col-xs-5" onclick="martClick({{ mart }})">
                 {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
                     <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
                     <br>
@@ -326,7 +336,8 @@
                 {% endwith %}
             </div>
 
-            <div class="col-xs-7" style="height:200px; overflow:scroll">
+            <div class="col-xs-7" style="height:200px; overflow:scroll" data-toggle="modal" data-target="#martModal"
+             data-whatever="{{ mart.id }}_{{ mart.name }}">
                 {% for item in items %}
                     {% if mart.id == item.mart %}
                         <div>
