@@ -15,7 +15,7 @@ def index(request):
         marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
                                                                    'yPosition')
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
-            expirationDate__gte=datetime.now()).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment').order_by('mart_id',
+            expirationDate__gte=datetime.now()).filter(stock__gt=0).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment', 'stock').order_by('mart_id',
                                                                                                            'seq')
         browser = request.META['HTTP_USER_AGENT']
         ip = get_ip(request)
@@ -53,7 +53,8 @@ def registerItem(request):
                 else:
                     seq = 1
                 item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], originalPrice=form.cleaned_data['originalPrice'],
-                                 discountPrice=form.cleaned_data['discountPrice'], expirationDate=form.cleaned_data['expirationDate'], comment=form.cleaned_data['comment'])
+                                 discountPrice=form.cleaned_data['discountPrice'], expirationDate=form.cleaned_data['expirationDate'],
+                                 comment=form.cleaned_data['comment'], stock=form.cleaned_data['stock'])
                 item.save()
                 form = ItemForm()
                 return render(request, 'mobileWeb/admin/register_item.html', {'form': form})
@@ -100,7 +101,7 @@ def deleteMart(request):
 def purchaseItem(request):
     try:
         item = ItemModel.objects.filter(id__exact=request.POST['item'])[0]
-        item.stockYn = 'N'
+        item.stock -= 1
         item.save()
         return HttpResponse("1")
     except Exception as ex:

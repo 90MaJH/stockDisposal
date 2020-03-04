@@ -22,7 +22,7 @@ class ItemForm(forms.ModelForm):
     # stockYn = forms.CharField(label='stockYn', widget=forms.Select(choices=choiceDic))
     class Meta:
         model = ItemModel
-        fields = ['mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment']
+        fields = ['mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment', 'stock']
         # fields = ['mart', 'name', 'price', 'expirationDate', 'stockYn']
 
 class ImtPosRegisterForm(forms.Form):
