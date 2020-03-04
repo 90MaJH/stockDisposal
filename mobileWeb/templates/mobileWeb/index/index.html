@@ -153,6 +153,7 @@
         };
 
         function martClick(mart) {
+            console.log(mart.id);
             // 이동할 위도 경도 위치를 생성합니다
             xPosition = mart.xPosition;
             yPosition = mart.yPosition;
@@ -176,7 +177,7 @@
 
 // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);
-            setTimeout("markerDelete('df')", 500);
+            setTimeout("markerDelete()", 500);
             markers.push(marker);
 
 
@@ -195,7 +196,7 @@
             }
         }
 
-        function markerDelete(marker) {
+        function markerDelete() {
             hideMarkers(null);
             setMarkers(map);
         }
