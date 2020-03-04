@@ -50,6 +50,11 @@ class ItemModel(models.Model):
             id=self.id,
             name=self.name)
 
+    @property
+    def discount_ratio(self):
+        return self.originalPrice
+        # return (self.originalPrice-self.discountPrice)/self.originalPrice
+
     class Meta:
         unique_together = (
             ('mart', 'seq')

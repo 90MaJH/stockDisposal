@@ -1,4 +1,5 @@
 {% load static %}
+{% load mathfilters %}
 <!DOCTYPE html>
 <html>
 
@@ -377,10 +378,8 @@
                     {% if mart.id == item.mart %}
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
-                            <h6>정가 : {{ item.originalPrice }}원</h6>
                             <h6>할인판매가 : {{ item.discountPrice }}원</h6>
-                            {#                            <h6>{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}</h6>#}
-                            {#                            <h6 style="color:red">{{ item.comment }}</h6>#}
+                            <h6>할인율 : <span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}%</span></h6>
                         </div>
                     {% endif %}
                 {% endfor %}
