@@ -380,7 +380,7 @@
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
                             <h6>할인판매가 : {{ item.discountPrice }}원</h6>
-                            <h6>할인율 : <span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}%</span></h6>
+                            <h6>할인율 : <span style="color:red">{{ item.originalPrice|sub:item.discountPrice }}%</span></h6>
                         </div>
                     {% endif %}
                 {% endfor %}
