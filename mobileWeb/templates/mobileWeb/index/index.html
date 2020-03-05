@@ -380,7 +380,7 @@
                     {% if mart.id == item.mart %}
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
-                            {% if item.discountPrice == '100' or item.discoutPrice == '1' %}
+                            {% if item.discountPrice == 1 or item.discountPrice == 100 %}
                                 <h6><span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span></h6>
                             {% else %}
                                 <h6>할인판매가 : {{ item.discountPrice }}원 <span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span></h6>
