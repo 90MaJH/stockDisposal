@@ -139,7 +139,7 @@ def addStatistics(request):
 @csrf_exempt
 def viewStatistics(request):
     try:
-        statistics = StatisticsModel.objects.all().order_by('-id')[:30]
+        statistics = StatisticsModel.objects.filter(action__exact='purchaseItem').order_by('-id')[:30]
         return render(request, 'mobileWeb/admin/viewStatistics.html', {'statistics':statistics})
     except Exception as ex:
         print('Error occured : ', ex)
