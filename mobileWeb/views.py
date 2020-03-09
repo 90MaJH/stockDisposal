@@ -318,7 +318,6 @@ def imtPosSaleInfoTest(request):
             if form.is_valid():
                 companyCode = form.cleaned_data['companyCode']
                 itemCode = form.cleaned_data['itemCode']
-                barcode = form.cleaned_data['barcode']
 
                 item = ItemModelTmp.objects.filter(itemCode__exact=itemCode).values('companyCode','itemCode','discountPrice')[0]
 
@@ -337,7 +336,6 @@ def imtPosSaleConfirmTest(request):
             if form.is_valid():
                 companyCode = form.cleaned_data['companyCode']
                 itemCode = form.cleaned_data['itemCode']
-                barcode = form.cleaned_data['barcode']
 
                 item = ItemModelTmp.objects.filter(itemCode__exact=itemCode).values('companyCode', 'itemCode',
                                                                                     'discountPrice')[0]
