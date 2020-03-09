@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from ipware.ip import get_ip
+from datetime import datetime, timedelta
+
 
 
 
@@ -146,135 +148,194 @@ def viewStatistics(request):
 
 def imtPosRegister(request):
     try:
-        discountRatio = 0
-
         companyCode = request.POST['companyCode']
         itemCode = request.POST['itemCode']
         barcode = request.POST['barCode']
         originalPrice = int(request.POST['originalPrice'])
         discountPrice = int(request.POST['discountPrice'])
 
-        barcode = barcode.split(' ')[0]
-        expirationDate = barcode.split(' ')[1]
-
-        now = datetime.datetime.now()
-        nowDateTime = now.strftime('%Y-%m-%d %H:%M:%S')
-        nowDateTime = nowDateTime.split[' ']
-        nowDate = int(nowDateTime[0])
-        nowDate = nowDate.split('-')
-        nowYear = int(nowDate[0])
-        nowMonth = int(nowDate[1])
-        nowDay =int(nowDate[2])
-        nowTime = int(nowDateTime[1])
-        nowTime = nowDateTime.split(':')
-        nowHour = int(nowTime[0])
-
-        expirationMonth = nowMonth
-        expirationDay = int(expirationDate.str[:2])
-        expirationHour = int(expirationDate.str[-2:])
-
-        if (expirationDay-nowDay) == 0:
-            timeGap = expirationHour-nowHour
-        elif (expirationDay-nowDay) == 1:
-            timeGap = expirationHour - nowHour + 24
-
-        if timeGap==1:
-            discountRatio = 40
-        elif timeGap==2:
-            discountRatio = 35
-        elif timeGap==3:
-            discountRatio = 30
-        elif timeGap==4:
-            discountRatio = 25
-        elif timeGap==5:
-            discountRatio = 20
-        elif timeGap==6:
-            discountRatio = 15
-        elif timeGap==7:
-            discountRatio = 10
-
-        if discountPrice == '':
-            discountPrice == originalPrice-(originalPrice*discountRatio/100)
-
-        returnJson = {
-            'companyCode':companyCode,
-            'itemCode':itemCode,
-            'originalPrice':originalPrice,
-            'discountPrice':discountPrice
-        }
-
-        return HttpResponse(json.dumps(returnJson), content_type="application/json")
+        imtPosRegisterCommon(companyCode, itemCode, barcode, originalPrice, discountPrice)
 
     except Exception as ex:
         print('Error occrued : ', ex)
 
 def imtPosRegisterTest(request):
-    if request.method == 'POST':
-        form = ImtPosRegisterForm(request.POST)
-        if form.is_valid():
-            discountRatio = 0
+    try:
+        if request.method == 'POST':
+            form = ImtPosRegisterForm(request.POST)
+            if form.is_valid():
+                companyCode = form.cleaned_data['companyCode']
+                itemCode = form.cleaned_data['itemCode']
+                barcode = form.cleaned_data['barcode']
+                # originalPrice = int(form.cleaned_data['originalPrice'])
+                originalPrice = 5000
+                discountEndDttm = form.cleaned_data['discountEndDttm']
+                if form.cleaned_data['discountPrice']:
+                    discountPrice = int(form.cleaned_data['discountPrice'])
+                else:
+                    discountPrice = 0
 
-            companyCode = form.cleaned_data['companyCode']
-            itemCode = form.cleaned_data['itemCode']
-            barcode = form.cleaned_data['barcode']
-            originalPrice = int(form.cleaned_data['originalPrice'])
-            if form.cleaned_data['discountPrice']:
-                discountPrice = int(form.cleaned_data['discountPrice'])
-            else:
-                discountPrice = 0
+                # imtPosRegisterCommon(companyCode, itemCode, barcode, originalPrice, discountPrice)
+                expirationDate = barcode.split(' ')[1]
+                barcode = barcode.split(' ')[0]
+                discountRatio = 0
 
-            expirationDate = barcode.split(' ')[1]
-            barcode = barcode.split(' ')[0]
+                now = datetime.now()
+                nowDateTime = now.strftime('%Y-%m-%d %H:%M:%S')
+                nowDateTime = nowDateTime.split(' ')
+                nowDate = nowDateTime[0]
+                nowDate = nowDate.split('-')
+                nowYear = int(nowDate[0])
+                nowMonth = int(nowDate[1])
+                nowDay = int(nowDate[2])
+                nowTime = nowDateTime[1]
+                nowTime = nowDateTime[1].split(':')
+                nowHour = int(nowTime[0])
 
-            now = datetime.now()
-            nowDateTime = now.strftime('%Y-%m-%d %H:%M:%S')
-            nowDateTime = nowDateTime.split(' ')
-            nowDate = nowDateTime[0]
-            nowDate = nowDate.split('-')
-            nowYear = int(nowDate[0])
-            nowMonth = int(nowDate[1])
-            nowDay = int(nowDate[2])
-            nowTime = nowDateTime[1]
-            nowTime = nowDateTime[1].split(':')
-            nowHour = int(nowTime[0])
+                expirationMonth = nowMonth
+                expirationDay = int(expirationDate[:2])
+                expirationHour = int(expirationDate[-2:])
 
-            expirationMonth = nowMonth
-            expirationDay = int(expirationDate[:2])
-            expirationHour = int(expirationDate[-2:])
+                if discountEndDttm == None:
+                    discountEndDttm = now + timedelta(days=1)
 
-            if (expirationDay - nowDay) == 0:
-                timeGap = expirationHour - nowHour
-            elif (expirationDay - nowDay) == 1:
-                timeGap = expirationHour - nowHour + 24
+                if (expirationDay - nowDay) == 0:
+                    timeGap = expirationHour - nowHour
+                else:
+                    timeGap = expirationHour - nowHour + 24
 
-            if timeGap == 0:
-                discountRatio = 50
-            elif timeGap == 1:
-                discountRatio = 40
-            elif timeGap == 2:
-                discountRatio = 35
-            elif timeGap == 3:
-                discountRatio = 30
-            elif timeGap == 4:
-                discountRatio = 25
-            elif timeGap == 5:
-                discountRatio = 20
-            elif timeGap == 6:
-                discountRatio = 15
-            elif timeGap == 7:
-                discountRatio = 10
+                if timeGap == 0:
+                    discountRatio = 50
+                elif timeGap == 1:
+                    discountRatio = 40
+                elif timeGap == 2:
+                    discountRatio = 35
+                elif timeGap == 3:
+                    discountRatio = 30
+                elif timeGap == 4:
+                    discountRatio = 25
+                elif timeGap == 5:
+                    discountRatio = 20
+                elif timeGap == 6:
+                    discountRatio = 15
+                else:
+                    discountRatio = 10
 
-            if discountPrice==0:
-                discountPrice = originalPrice - (originalPrice * discountRatio / 100)
+                if discountPrice == 0:
+                    discountPrice = originalPrice - (originalPrice * discountRatio / 100)
 
-            returnJson = {
-                'companyCode': companyCode,
-                'itemCode': itemCode,
-                'originalPrice': originalPrice,
-                'discountPrice': discountPrice
-            }
+                item = ItemModelTmp(companyCode=companyCode, itemCode=itemCode, barcode=barcode, discountEndDttm=discountEndDttm, discountPrice=discountPrice)
+                item.save()
 
-            return HttpResponse(json.dumps(returnJson), content_type="application/json")
-    else:
-        form = ImtPosRegisterForm()
-        return render(request, 'mobileWeb/apiTest/imtPosRegisterTest.html', {'form': form})
+                # returnJson = {
+                #     'companyCode': companyCode,
+                #     'itemCode': itemCode,
+                #     'originalPrice': originalPrice,
+                #     'discountPrice': discountPrice
+                # }
+
+                # return HttpResponse(json.dumps(returnJson), content_type="application/json")
+                return HttpResponse("0")
+        else:
+            form = ImtPosRegisterForm()
+            return render(request, 'mobileWeb/apiTest/imtPosRegisterTest.html', {'form': form})
+    except Exception as ex:
+        print('Error occrued : ', ex)
+
+def imtPosRegisterCommon(companyCode, itemCode, barcode, originalPrice, discountPrice):
+    try:
+        expirationDate = barcode.split(' ')[1]
+        barcode = barcode.split(' ')[0]
+        discountRatio = 0
+
+        now = datetime.now()
+        nowDateTime = now.strftime('%Y-%m-%d %H:%M:%S')
+        nowDateTime = nowDateTime.split(' ')
+        nowDate = nowDateTime[0]
+        nowDate = nowDate.split('-')
+        nowYear = int(nowDate[0])
+        nowMonth = int(nowDate[1])
+        nowDay = int(nowDate[2])
+        nowTime = nowDateTime[1]
+        nowTime = nowDateTime[1].split(':')
+        nowHour = int(nowTime[0])
+
+        expirationMonth = nowMonth
+        expirationDay = int(expirationDate[:2])
+        expirationHour = int(expirationDate[-2:])
+
+        if (expirationDay - nowDay) == 0:
+            timeGap = expirationHour - nowHour
+        elif (expirationDay - nowDay) == 1:
+            timeGap = expirationHour - nowHour + 24
+
+        if timeGap == 0:
+            discountRatio = 50
+        elif timeGap == 1:
+            discountRatio = 40
+        elif timeGap == 2:
+            discountRatio = 35
+        elif timeGap == 3:
+            discountRatio = 30
+        elif timeGap == 4:
+            discountRatio = 25
+        elif timeGap == 5:
+            discountRatio = 20
+        elif timeGap == 6:
+            discountRatio = 15
+        else:
+            discountRatio = 10
+
+        if discountPrice == 0:
+            discountPrice = originalPrice - (originalPrice * discountRatio / 100)
+
+
+
+        returnJson = {
+            'companyCode': companyCode,
+            'itemCode': itemCode,
+            'originalPrice': originalPrice,
+            'discountPrice': discountPrice
+        }
+
+        return HttpResponse(json.dumps(returnJson), content_type="application/json")
+    except Exception as ex:
+        print('Error occrued : ', ex)
+
+def imtPosSaleInfoTest(request):
+    try:
+        if request.method == 'POST':
+            form = ImtPosSaleForm(request.POST)
+            if form.is_valid():
+                companyCode = form.cleaned_data['companyCode']
+                itemCode = form.cleaned_data['itemCode']
+                barcode = form.cleaned_data['barcode']
+
+                item = ItemModelTmp.objects.filter(itemCode__exact=itemCode).values('companyCode','itemCode','discountPrice')[0]
+
+                return HttpResponse(json.dumps(item), content_type="application/json")
+        else:
+            form = ImtPosSaleForm(request.POST)
+            return render(request, 'mobileWeb/apiTest/imtPosSaleInfoTest.html', {'form': form})
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+
+def imtPosSaleConfirmTest(request):
+    try:
+        if request.method == 'POST':
+            form = ImtPosSaleForm(request.POST)
+            if form.is_valid():
+                companyCode = form.cleaned_data['companyCode']
+                itemCode = form.cleaned_data['itemCode']
+                barcode = form.cleaned_data['barcode']
+
+                item = ItemModelTmp.objects.filter(itemCode__exact=itemCode).values('companyCode', 'itemCode',
+                                                                                    'discountPrice')[0]
+
+                return HttpResponse("0")
+        else:
+            form = ImtPosSaleForm(request.POST)
+            return render(request, 'mobileWeb/apiTest/imtPosSaleInfoTest.html', {'form': form})
+    except Exception as ex:
+        print('Error occured : ', ex)

@@ -16,4 +16,6 @@ urlpatterns = [
 
     path('imtPosRegister', views.imtPosRegister, name='imtPosRegister'),
     path('imtPosRegisterTest', views.imtPosRegisterTest, name='imtPosRegisterTest'),
+    path('imtPosSaleInfoTest', views.imtPosSaleInfoTest, name='imtPosSaleInfoTest'),
+    path('imtPosSaleConfirmTest', views.imtPosSaleConfirmTest, name='imtPosSaleConfirmTest'),
 ]
