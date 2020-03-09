@@ -28,11 +28,10 @@ class ItemForm(forms.ModelForm):
 class ImtPosRegisterForm(forms.Form):
     companyCode = forms.CharField(max_length=7)
     itemCode = forms.CharField(max_length=7)
-    barcode = forms.CharField(max_length=20)
+    barcode = forms.CharField(max_length=20, required=False)
     discountEndDttm = forms.DateTimeField(required=False)
     discountPrice = forms.IntegerField(required=False)
 
 class ImtPosSaleForm(forms.Form):
     companyCode = forms.CharField(max_length=7)
     itemCode = forms.CharField(max_length=7)
-    barcode = forms.CharField(max_length=20, required=False)
