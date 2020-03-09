@@ -176,8 +176,7 @@ def imtPosRegisterTest(request):
                     discountPrice = 0
 
                 # imtPosRegisterCommon(companyCode, itemCode, barcode, originalPrice, discountPrice)
-                expirationDate = barcode.split(' ')[1]
-                barcode = barcode.split(' ')[0]
+
                 discountRatio = 0
 
                 now = datetime.now()
@@ -192,9 +191,19 @@ def imtPosRegisterTest(request):
                 nowTime = nowDateTime[1].split(':')
                 nowHour = int(nowTime[0])
 
-                expirationMonth = nowMonth
-                expirationDay = int(expirationDate[:2])
-                expirationHour = int(expirationDate[-2:])
+                if barcode != '':
+                    expirationDate = barcode.split(' ')[1]
+                    barcode = barcode.split(' ')[0]
+                    expirationMonth = nowMonth
+                    expirationDay = int(expirationDate[:2])
+                    expirationHour = int(expirationDate[-2:])
+                else:
+                    expirationDate = now + timedelta(days=1)
+                    expirationMonth = nowMonth
+                    expirationDay = expirationDate.day
+                    expirationHour = expirationDate.hour
+
+
 
                 if discountEndDttm == None:
                     discountEndDttm = now + timedelta(days=1)
