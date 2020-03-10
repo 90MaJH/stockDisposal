@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mobileWeb',
     'mathfilters',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
