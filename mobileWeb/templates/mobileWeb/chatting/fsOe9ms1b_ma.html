@@ -332,23 +332,7 @@
                     message: message
                 },
                 success: function (data) {
-                    var timeInMs = Date.now();
-                    html = '';
-                    html += `
-                        <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img class="rounded-circle user_img_msg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    ${message}
-                                    <span class="msg_time">${timeInMs}</span>
-                                </div>
-                            </div>
-                        `
-                    document.getElementById('card_body').innerHTML += html;
-                    document.getElementById('message').value = '';
-                    var scrollObject = document.getElementById('card_body');
-                    scrollObject.scrollTop = scrollObject.scrollHeight;
+                    location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("ajax error : " + textStatus + "\n" + errorThrown);
@@ -388,7 +372,7 @@
                         {% if chatting.userId == '0' %}
                             <div class="d-flex justify-content-end mb-4">
                                 <div class="msg_cotainer_send">
-                                    {{ chatting.message }}
+                                    {{ chatting.message|linebreaks }}
                                     <span class="msg_time_send">{{ chatting.ins_dttm }}</span>
                                 </div>
                                 <div class="img_cont_msg">
@@ -401,7 +385,7 @@
                                     <img class="rounded-circle user_img_msg">
                                 </div>
                                 <div class="msg_cotainer">
-                                    {{ chatting.message }}
+                                    {{ chatting.message|linebreaks }}
                                     <span class="msg_time">{{ chatting.ins_dttm }}</span>
                                 </div>
                             </div>
