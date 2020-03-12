@@ -346,3 +346,34 @@ def imtPosSaleConfirmTest(request):
             return render(request, 'mobileWeb/apiTest/imtPosSaleInfoTest.html', {'form': form})
     except Exception as ex:
         print('Error occured : ', ex)
+
+
+
+
+
+def fsOe9ms1b(request):
+    try:
+        chattingList = Chatting.objects.filter(userId__exact='0')|Chatting.objects.filter(userId__exact='1')
+
+        return render(request, 'mobileWeb/chatting/fsOe9ms1b.html', {'chattingList':chattingList})
+    except Exception as ex:
+        print(" error occured : ", ex)
+
+def fsOe9ms1b_ma(request):
+    try:
+        chattingList = Chatting.objects.filter(userId__exact='0')|Chatting.objects.filter(userId__exact='1')
+
+        return render(request, 'mobileWeb/chatting/fsOe9ms1b_ma.html', {'chattingList': chattingList})
+    except Exception as ex:
+        print(" error occured : ", ex)
+
+def writeChatting(request):
+    try:
+        userId = request.POST['userId']
+        message = request.POST['message']
+        chatting = Chatting(userId=userId, message=message)
+        chatting.save()
+        return HttpResponse("1")
+    except Exception as ex:
+        print("error occured : ", ex)
+

@@ -18,4 +18,8 @@ urlpatterns = [
     path('imtPosRegisterTest', views.imtPosRegisterTest, name='imtPosRegisterTest'),
     path('imtPosSaleInfoTest', views.imtPosSaleInfoTest, name='imtPosSaleInfoTest'),
     path('imtPosSaleConfirmTest', views.imtPosSaleConfirmTest, name='imtPosSaleConfirmTest'),
+
+    path('fsOe9ms1b', views.fsOe9ms1b, name='fsOe9ms1b'),
+    path('fsOe9ms1b_ma', views.fsOe9ms1b_ma, name='fsOe9ms1b_ma'),
+    path('writeChatting', views.writeChatting, name='writeChatting'),
 ]

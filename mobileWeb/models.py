@@ -81,3 +81,12 @@ class ItemModelTmp(models.Model):
     barcode = models.CharField(blank=False, default='123213 2823', max_length=20)
     discountEndDttm = models.DateTimeField(blank=True, default='2020-03-28 23:00:00')
     discountPrice = models.FloatField()
+
+class Chatting(models.Model):
+    userId = models.CharField(blank=False, default='1', max_length=1)
+    message = models.TextField(blank=True)
+    readYn = models.CharField(blank=False, default='N', max_length=1)
+    ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
+    ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    upt_dttm = models.DateTimeField(blank=False, auto_now=True)
+    upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
