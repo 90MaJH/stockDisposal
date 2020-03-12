@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>Chat</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -21,20 +23,29 @@
 
     <style>
         body, html {
+            vertical-align: middle;
             height: 100%;
-            margin: 0;
             background: #7F7FD5;
             background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
             background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
         }
 
+        .container-fluid{
+            height:100%;
+        }
+
+        .justify-content-center{
+            height: 100%;
+        }
+
+
         .chat {
-            margin-top: auto;
-            margin-bottom: auto;
+            vertical-align: middle;
+            margin: auto;
         }
 
         .card {
-            height: 500px;
+            height: 750px;
             border-radius: 15px !important;
             background-color: rgba(0, 0, 0, 0.4) !important;
         }
@@ -80,7 +91,7 @@
             background-color: rgba(0, 0, 0, 0.3) !important;
             border: 0 !important;
             color: white !important;
-            height: 100px !important;
+            height: 170px !important;
             overflow-y: auto;
         }
 
@@ -367,10 +378,9 @@
 </head>
 <!--Coded With Love By Mutiullah Samim-->
 <body>
-<div class="container-fluid h-100">
-    <div class="row justify-content-center h-100">
-
-        <div class="col-md-8 col-xl-6 chat">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-xl-12 chat">
             <div class="card">
                 <div class="card-body msg_card_body" id="card_body">
                     {% for chatting in chattingList %}
