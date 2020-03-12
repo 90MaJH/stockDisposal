@@ -350,7 +350,7 @@ def imtPosSaleConfirmTest(request):
 
 
 
-
+@csrf_exempt
 def fsOe9ms1b(request):
     try:
         chattingList = Chatting.objects.filter(userId__exact='0')|Chatting.objects.filter(userId__exact='1')
@@ -359,6 +359,7 @@ def fsOe9ms1b(request):
     except Exception as ex:
         print(" error occured : ", ex)
 
+@csrf_exempt
 def fsOe9ms1b_ma(request):
     try:
         chattingList = Chatting.objects.filter(userId__exact='0')|Chatting.objects.filter(userId__exact='1')
@@ -367,6 +368,7 @@ def fsOe9ms1b_ma(request):
     except Exception as ex:
         print(" error occured : ", ex)
 
+@csrf_exempt
 def writeChatting(request):
     try:
         userId = request.POST['userId']
