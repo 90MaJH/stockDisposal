@@ -84,6 +84,7 @@ class ItemModelTmp(models.Model):
 
 class Chatting(models.Model):
     userId = models.CharField(blank=False, default='1', max_length=1)
+    partnerId = models.CharField(blank=False, default='0', max_length=1)
     message = models.TextField(blank=True)
     readYn = models.CharField(blank=False, default='N', max_length=1)
     ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)

@@ -21,5 +21,7 @@ urlpatterns = [
 
     path('fsOe9ms1b', views.fsOe9ms1b, name='fsOe9ms1b'),
     path('fsOe9ms1b_ma', views.fsOe9ms1b_ma, name='fsOe9ms1b_ma'),
+    path('ssOe9ms1b', views.ssOe9ms1b, name='ssOe9ms1b'),
+    path('ssOe9ms1b_ma', views.ssOe9ms1b_ma, name='ssOe9ms1b_ma'),
     path('writeChatting', views.writeChatting, name='writeChatting'),
 ]

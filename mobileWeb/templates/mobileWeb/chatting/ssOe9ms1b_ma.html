@@ -322,8 +322,8 @@
         }
 
         function send() {
-            userId = '1';
-            partnerId = '0';
+            userId = '0';
+            partnerId = '2';
             message = document.getElementById('message').value;
             if (message != '') {
                 $.ajax({
@@ -366,9 +366,10 @@
 </head>
 <!--Coded With Love By Mutiullah Samim-->
 <body>
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-12 col-xl-12 chat">
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+
+        <div class="col-md-8 col-xl-6 chat">
             <div class="card">
                 <div class="card-body msg_card_body" id="card_body">
                     {% for chatting in chattingList %}

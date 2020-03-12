@@ -323,6 +323,7 @@
 
         function send() {
             userId = '0';
+            partnerId ='1';
             message = document.getElementById('message').value;
             if (message != '') {
                 $.ajax({
@@ -330,6 +331,7 @@
                     url: '/writeChatting',
                     data: {
                         userId: userId,
+                        partnerId: partnerId,
                         message: message
                     },
                     success: function (data) {
