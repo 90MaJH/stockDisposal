@@ -349,12 +349,19 @@
             }
         }
 
-        function ayoung(){
+        function ayoung() {
             window.location.href = "https://www.dropbox.com/s/k2tf3tyqhlxrnb4/%EC%88%98%EC%B9%98-%EC%A1%B0%EA%B5%90%20%EC%97%AC%EA%B3%A0%EC%83%9D%20%EC%95%84%EC%98%81%EC%9D%B4%20%EC%9D%B4%EC%95%BC%EA%B8%B0%201-406.txt?dl=0";
         }
 
-        function imageUpload(){
+        function imageUpload() {
             window.location.href = "imageUploadChatting";
+        }
+
+        function showImages(id, path) {
+            html = '<img src="' + path + '" alt="">';
+            document.getElementById(id).innerHTML = html;
+            deleteAttribute = document.getElementById('view_' + id);
+            deleteAttribute.remove();
         }
 
         $(document).ready(function () {
@@ -398,7 +405,12 @@
                                 {% endif %}
 
                                 {% if chatting.photo %}
-                                    <img src="{{ chatting.photo.url }}" alt="">
+                                    <div id='view_{{ chatting.id }}'>
+                                    <span style="color:lightgoldenrodyellow"
+                                          onClick="showImages('{{ chatting.id }}','{{ chatting.photo.url }}')">사진보기</span>
+                                    </div>
+
+                                    <div id="{{ chatting.id }}"></div>
                                 {% endif %}
                             </div>
                         {% else %}
@@ -414,7 +426,11 @@
                                 {% endif %}
 
                                 {% if chatting.photo %}
-                                    <img src="{{ chatting.photo.url }}" alt="">
+                                    <div id='view_{{ chatting.id }}'>
+                                    <span style="color:lightgoldenrodyellow"
+                                          onClick="showImages('{{ chatting.id }}','{{ chatting.photo.url }}')">사진보기</span>
+                                    </div>
+                                    <div id="{{ chatting.id }}"></div>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -426,7 +442,8 @@
                     </div>
                     <div class="input-group">
                         <div class="input-group-append">
-                            <span class="input-group-text attach_btn" onClick="imageUpload()"><i class="fas fa-paperclip"></i></span>
+                            <span class="input-group-text attach_btn" onClick="imageUpload()"><i
+                                    class="fas fa-paperclip"></i></span>
                         </div>
                         <textarea name="" class="form-control type_msg"
                                   placeholder="Type your message..." id="message"></textarea>

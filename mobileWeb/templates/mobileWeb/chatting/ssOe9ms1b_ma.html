@@ -344,6 +344,12 @@
             }
         }
 
+        function showImages(id, path) {
+            html = '<img src="' + path + '" alt="">';
+            document.getElementById(id).innerHTML = html;
+            deleteAttribute = document.getElementById('view_' + id);
+            deleteAttribute.remove();
+        }
 
         $(document).ready(function () {
             var csrftoken = getCookie('csrftoken');
@@ -373,25 +379,47 @@
             <div class="card">
                 <div class="card-body msg_card_body" id="card_body">
                     {% for chatting in chattingList %}
+
                         {% if chatting.userId == '0' %}
                             <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    {{ chatting.message|linebreaks }}
-                                    <span class="msg_time_send">{{ chatting.ins_dttm }}</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img class="rounded-circle user_img_msg">
-                                </div>
+                                {% if chatting.message != '' %}
+                                    <div class="msg_cotainer_send">
+                                        {{ chatting.message|linebreaks }}
+                                        <span class="msg_time_send">{{ chatting.ins_dttm }}</span>
+                                    </div>
+                                    <div class="img_cont_msg">
+                                        <img class="rounded-circle user_img_msg">
+                                    </div>
+                                {% endif %}
+
+                                {% if chatting.photo %}
+                                    <div id='view_{{ chatting.id }}'>
+                                    <span style="color:lightgoldenrodyellow"
+                                          onClick="showImages('{{ chatting.id }}','{{ chatting.photo.url }}')">사진보기</span>
+                                    </div>
+
+                                    <div id="{{ chatting.id }}"></div>
+                                {% endif %}
                             </div>
                         {% else %}
                             <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img class="rounded-circle user_img_msg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    {{ chatting.message|linebreaks }}
-                                    <span class="msg_time">{{ chatting.ins_dttm }}</span>
-                                </div>
+                                {% if chatting.message != '' %}
+                                    <div class="img_cont_msg">
+                                        <img class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                        {{ chatting.message|linebreaks }}
+                                        <span class="msg_time">{{ chatting.ins_dttm }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if chatting.photo %}
+                                    <div id='view_{{ chatting.id }}'>
+                                    <span style="color:lightgoldenrodyellow"
+                                          onClick="showImages('{{ chatting.id }}','{{ chatting.photo.url }}')">사진보기</span>
+                                    </div>
+                                    <div id="{{ chatting.id }}"></div>
+                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}

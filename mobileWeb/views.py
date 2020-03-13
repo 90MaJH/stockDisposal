@@ -391,6 +391,7 @@ def ssOe9ms1b_ma(request):
     except Exception as ex:
         print(" error occured : ", ex)
 
+
 @csrf_exempt
 def writeChatting(request):
     try:
