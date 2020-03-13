@@ -403,3 +403,24 @@ def writeChatting(request):
     except Exception as ex:
         print("error occured : ", ex)
 
+@csrf_exempt
+def imageUploadChatting(request):
+    try:
+        if request.method == 'POST':
+           form = ChattingImageUploadForm(request.POST, request.FILES)
+           if form.is_valid():
+               form.save()
+               #### ajax json 처리 참고할
+               # return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+               return HttpResponse("1")
+           else:
+                #### ajax json 처리 참고할
+                # return JsonResponse({'error': True, 'errors': form.errors})
+                return HttpResponse("error")
+        else:
+            form = ChattingImageUploadForm()
+            form.fields['userId'].widget = forms.HiddenInput()
+            form.fields['partnerId'].widget = forms.HiddenInput()
+            return render(request, 'mobileWeb/chatting/imageUpload.html', {'form': form})
+    except Exception as ex:
+        print('Error occured : ', ex)

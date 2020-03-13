@@ -35,3 +35,8 @@ class ImtPosRegisterForm(forms.Form):
 class ImtPosSaleForm(forms.Form):
     companyCode = forms.CharField(max_length=7)
     itemCode = forms.CharField(max_length=7)
+
+class ChattingImageUploadForm(forms.ModelForm):
+    class Meta:
+        model = Chatting
+        fields = ['userId','partnerId','photo']

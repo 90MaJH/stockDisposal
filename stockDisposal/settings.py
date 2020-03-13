@@ -131,3 +131,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 SERIALIZATION_MODULES = {
     'json': 'wadofstuff.django.serializers.json'
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'

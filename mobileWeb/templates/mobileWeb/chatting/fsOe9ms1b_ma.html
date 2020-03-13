@@ -297,6 +297,11 @@
                 margin-bottom: 15px !important;
             }
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 
     <script type="text/javascript">
@@ -323,7 +328,7 @@
 
         function send() {
             userId = '0';
-            partnerId ='1';
+            partnerId = '1';
             message = document.getElementById('message').value;
             if (message != '') {
                 $.ajax({
@@ -373,33 +378,57 @@
             <div class="card">
                 <div class="card-body msg_card_body" id="card_body">
                     {% for chatting in chattingList %}
+
                         {% if chatting.userId == '0' %}
                             <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    {{ chatting.message|linebreaks }}
-                                    <span class="msg_time_send">{{ chatting.ins_dttm }}</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img class="rounded-circle user_img_msg">
-                                </div>
+                                {% if chatting.message != '' %}
+                                    <div class="msg_cotainer_send">
+                                        {{ chatting.message|linebreaks }}
+                                        <span class="msg_time_send">{{ chatting.ins_dttm }}</span>
+                                    </div>
+                                    <div class="img_cont_msg">
+                                        <img class="rounded-circle user_img_msg">
+                                    </div>
+                                {% endif %}
+
+                                {% if chatting.photo %}
+                                    <img src="{{ chatting.photo.url }}" alt="">
+                                {% endif %}
                             </div>
                         {% else %}
                             <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img class="rounded-circle user_img_msg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    {{ chatting.message|linebreaks }}
-                                    <span class="msg_time">{{ chatting.ins_dttm }}</span>
-                                </div>
+                                {% if chatting.message != '' %}
+                                    <div class="img_cont_msg">
+                                        <img class="rounded-circle user_img_msg">
+                                    </div>
+                                    <div class="msg_cotainer">
+                                        {{ chatting.message|linebreaks }}
+                                        <span class="msg_time">{{ chatting.ins_dttm }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if chatting.photo %}
+                                    <img src="{{ chatting.photo.url }}" alt="">
+                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="card-footer">
+                    <div class="option-group">
+                        <a href="fsOe9ms1b_ma" class="activated">1</a>
+                        <a href="ssOe9ms1b_ma">2</a>
+                    </div>
                     <div class="input-group">
+
                         <div class="input-group-append">
-                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+
+                                <span class="input-group-text attach_btn">
+                                    <a href="imageUploadChatting">
+                                    <i class="fas fa-paperclip"></i>
+                                    </a>
+                                </span>
+
                         </div>
                         <textarea name="" class="form-control type_msg"
                                   placeholder="Type your message..." id="message"></textarea>

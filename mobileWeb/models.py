@@ -87,6 +87,8 @@ class Chatting(models.Model):
     partnerId = models.CharField(blank=False, default='0', max_length=1)
     message = models.TextField(blank=True)
     readYn = models.CharField(blank=False, default='N', max_length=1)
+    photo = models.ImageField(blank=True, null=True, upload_to="images")
+    attachment = models.FileField(upload_to="attachments", blank=True, null=True)
     ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
     ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
     upt_dttm = models.DateTimeField(blank=False, auto_now=True)

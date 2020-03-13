@@ -1,6 +1,13 @@
 from django.urls import path
 from . import views
 
+from django.conf.urls.static import static
+from django.conf.urls import include, url
+from django.conf import settings
+
+
+
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
@@ -24,4 +31,10 @@ urlpatterns = [
     path('ssOe9ms1b', views.ssOe9ms1b, name='ssOe9ms1b'),
     path('ssOe9ms1b_ma', views.ssOe9ms1b_ma, name='ssOe9ms1b_ma'),
     path('writeChatting', views.writeChatting, name='writeChatting'),
+    path('imageUploadChatting', views.imageUploadChatting, name='imageUploadChatting')
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
