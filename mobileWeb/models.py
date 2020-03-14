@@ -35,7 +35,7 @@ class ItemModel(models.Model):
     originalPrice = models.IntegerField(blank=False, default=0)
     discountPrice = models.IntegerField(blank=False, default=0)
     expirationDate = models.DateTimeField(blank=False)
-    comment = models.CharField(blank=False, max_length=30, default='')
+    comment = models.CharField(blank=False, max_length=200, default='')
     stock = models.IntegerField(blank=False, default=1)
     stockYn = models.CharField(blank=False, max_length=1, default='Y')
     use_yn = models.CharField(blank=False, default="Y", max_length=1)
