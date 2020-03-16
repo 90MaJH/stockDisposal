@@ -84,15 +84,21 @@
                     var itemName = '{{ item.name }}';
                     var itemPrice = {{ item.discountPrice }};
                     var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}';
+                {% autoescape off %}
                     var itemComment = '{{ item.comment }}';
+                {% endautoescape %}
                     var html = "";
                     var div = document.createElement('div');
                     html += `
+                    <div>
                     <div data-toggle="modal" data-target="#itemModal" data-whatever="${martName}_${itemId}_${itemName}">
                         <h4 style = "color:mediumpurple;" > ${itemName} </h4>
                     <h6> ${itemPrice}원 </h6>
                     <h6> ${itemExpirationDate} </h6>
+                    </div>
+                    {% autoescape off %}
                     <h6 style="color:red">${itemComment}</h6>
+                    {% endautoescape %}
                     </div>
                 `
                     div.innerHTML = html;
@@ -189,7 +195,7 @@
             }
         }
 
-        function hideMarkers(map){
+        function hideMarkers(map) {
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
             }
@@ -380,9 +386,13 @@
                         <div>
                             <h4 style="color:mediumpurple;">{{ item.name }}</h4>
                             {% if item.discountPrice == 1 or item.discountPrice == 100 %}
-                                <h6><span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span></h6>
+                                <h6><span
+                                        style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
+                                </h6>
                             {% else %}
-                                <h6>할인판매가 : {{ item.discountPrice }}원 <span style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span></h6>
+                                <h6>할인판매가 : {{ item.discountPrice }}원 <span
+                                        style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
+                                </h6>
                             {% endif %}
 
                         </div>
