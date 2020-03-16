@@ -30,6 +30,8 @@ urlpatterns = [
     path('fsOe9ms1b_ma', views.fsOe9ms1b_ma, name='fsOe9ms1b_ma'),
     path('ssOe9ms1b', views.ssOe9ms1b, name='ssOe9ms1b'),
     path('ssOe9ms1b_ma', views.ssOe9ms1b_ma, name='ssOe9ms1b_ma'),
+    path('tsOe9ms1b', views.tsOe9ms1b, name='tsOe9ms1b'),
+    path('tsOe9ms1b_ma', views.tsOe9ms1b_ma, name='tsOe9ms1b_ma'),
     path('writeChatting', views.writeChatting, name='writeChatting'),
     path('imageUploadChatting', views.imageUploadChatting, name='imageUploadChatting')
 ]

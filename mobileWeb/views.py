@@ -393,6 +393,27 @@ def ssOe9ms1b_ma(request):
 
 
 @csrf_exempt
+def tsOe9ms1b(request):
+    try:
+        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
+                       |Chatting.objects.filter(userId__exact='3')
+
+        return render(request, 'mobileWeb/chatting/tsOe9ms1b.html', {'chattingList':chattingList})
+    except Exception as ex:
+        print(" error occured : ", ex)
+
+@csrf_exempt
+def tsOe9ms1b_ma(request):
+    try:
+        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
+                       |Chatting.objects.filter(userId__exact='3')
+
+        return render(request, 'mobileWeb/chatting/tsOe9ms1b_ma.html', {'chattingList': chattingList})
+    except Exception as ex:
+        print(" error occured : ", ex)
+
+
+@csrf_exempt
 def writeChatting(request):
     try:
         userId = request.POST['userId']
