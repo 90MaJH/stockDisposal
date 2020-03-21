@@ -28,7 +28,7 @@
                             {% if mart.id == item.mart %}
                                 <div class="container-item">
                                     <span class="title-item">{{ item.name }}</span><br>
-                                    {% if item.discountPrice <= 100 %}
+                                    {% if item.discountPrice <= 200 %}
                                         <span class="ratio">
                                                 {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
                                             </span>

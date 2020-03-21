@@ -16,14 +16,16 @@
                     <div class="text-center item-name">
                         <span> {{ item.name }} </span>
                     </div>
-                    {% if item.image %}
-                        <img class='image-item' src='{{ item.image.url }}' alt="">
-                    {% else %}
-                        <img class='image-item' src="{% static '/mobileWeb/images/noImage.png' %}" alt="">
-                    {% endif %}
+                    <div class="text-center">
+                        {% if item.image %}
+                            <img class='image-item' src='{{ item.image.url }}' alt="">
+                        {% else %}
+                            <img class='image-item' src="{% static '/mobileWeb/images/noImage.png' %}" alt="">
+                        {% endif %}
+                    </div>
                     <div>
                         <span class="item-original-price">정가 : {{ item.originalPrice }}원 </span><br>
-                        {% if item.discountPrice > 100 %}
+                        {% if item.discountPrice > 200 %}
                             <span class="item-discount-price">할인판매가 : {{ item.discountPrice }}원 </span>
                         {% endif %}
                         <span class="item-discount-ratio">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}%</span><br>

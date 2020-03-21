@@ -90,8 +90,7 @@
             marker.setMap(map);
 
             var iwContent = `
-<div style="padding:5px;" data-whatever="${martId}_${martName}" data-toggle="modal" data-target="#martModal">
-    ${martName}
+<div class="map-div" onclick=martDetail("${martId}")>${martName}
 </div>
 `
             iwPosition = position; //인포윈도우 표시 위치입니다
