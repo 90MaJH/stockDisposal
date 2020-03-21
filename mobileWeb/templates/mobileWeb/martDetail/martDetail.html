@@ -24,7 +24,9 @@
                         {% endif %}
                     </div>
                     <div>
-                        <span class="item-original-price">정가 : {{ item.originalPrice }}원 </span><br>
+                        {% if item.originalPrice > 200 %}
+                            <span class="item-original-price">정가 : {{ item.originalPrice }}원 </span><br>
+                        {% endif %}
                         {% if item.discountPrice > 200 %}
                             <span class="item-discount-price">할인판매가 : {{ item.discountPrice }}원 </span>
                         {% endif %}
