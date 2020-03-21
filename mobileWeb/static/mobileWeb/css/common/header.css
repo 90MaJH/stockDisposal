@@ -2,6 +2,21 @@
     height: 60px;
 }
 
-.text-logo{
-    height:65%
+.text-logo {
+    height: 65%
+}
+
+a:link {
+    color: #333333;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333333;
+    text-decoration: none;
 }

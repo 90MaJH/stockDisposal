@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/index/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +150,7 @@
       <workItem from="1582855015441" duration="54564000" />
       <workItem from="1584003594857" duration="130000" />
       <workItem from="1584021346054" duration="10621000" />
-      <workItem from="1584153664022" duration="34060000" />
+      <workItem from="1584153664022" duration="34412000" />
     </task>
     <servers />
   </component>

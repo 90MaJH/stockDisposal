@@ -21,8 +21,7 @@
 
                         <h6>{{ mart.martInfo }}</h6>
                     </div>
-                    <div class="col-6" class="items" data-toggle="modal" data-target="#martModal"
-                         data-whatever="{{ mart.id }}_{{ mart.name }}">
+                    <div class="col-6" class="items" onClick="martDetail('{{ mart.id }}')">
                         {% for item in items %}
                             {% if mart.id == item.mart %}
                                 <div>
