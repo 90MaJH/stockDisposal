@@ -1,3 +1,18 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    background: #222222;
+    display: table;
+    margin: auto;
+}
+
+body {
+    max-width:500px;
+    vertical-align: middle;
+}
+
 .padding-false {
     padding:0 !important
 }

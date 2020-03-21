@@ -12,32 +12,31 @@
 
         {% for mart in marts %}
             <div class="row row-marts">
-                <h3 onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')" class="title-mart text-center">{{ mart.name }}</h3>
+                <h3 onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')"
+                    class="title-mart text-center">{{ mart.name }}</h3>
                 <div class="row">
                     <div class="col-6">
                         {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
-                            <img src="{% static path %}" class="img-thumbnail" onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')">
+                            <img src="{% static path %}" class="img-thumbnail"
+                                 onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')">
                         {% endwith %}
 
                         <h6>{{ mart.martInfo }}</h6>
                     </div>
-                    <div class="col-6" class="items" onClick="martDetail('{{ mart.id }}')">
+                    <div class="col-6 container-item-list" onClick="martDetail('{{ mart.id }}')">
                         {% for item in items %}
                             {% if mart.id == item.mart %}
-                                <div>
-                                    <h4 class="title-item">{{ item.name }}</h4>
-                                    {% if item.discountPrice == 1 or item.discountPrice == 100 %}
-                                        <h6>
-                                            <span class="ratio">
+                                <div class="container-item">
+                                    <span class="title-item">{{ item.name }}</span><br>
+                                    {% if item.discountPrice <= 100 %}
+                                        <span class="ratio">
                                                 {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
                                             </span>
-                                        </h6>
                                     {% else %}
-                                        <h6>{{ item.discountPrice }}원
-                                            <span class="ratio">
+                                        <span class="item-discount-price">{{ item.discountPrice }}원</span>
+                                        <span class="ratio">
                                                 {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
                                             </span>
-                                        </h6>
                                     {% endif %}
                                 </div>
                             {% endif %}
@@ -48,7 +47,9 @@
 
                 <div class="col-12">
                     {% for martComment in mart.martcomment %}
-                        <h6>-{{ martComment.comment }}</h6>
+                        <div class="comment">
+                            -{{ martComment.comment }}<br>
+                        </div>
                     {% endfor %}
                 </div>
                 <button class="btn-add-comment" onClick="addComment('{{ mart.id }}')">코멘트를 달아주세요</button>

@@ -21,11 +21,21 @@
     margin-top: 10px;
 }
 
+.container-item{
+    margin-bottom: 10px;
+}
+
 .title-item{
+    font-size : 110%;
     color:#262626;
 }
 
+.item-discount-price{
+    font-size: 80%;
+}
+
 .ratio{
+    font-size : 70%;
     color:#f15733;
 }
 
@@ -33,8 +43,16 @@
     width:100%
 }
 
-.items{
-    overflow: scroll;
+.container-item-list{
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.comment{
+    max-width: 350px;
+    word-break: normal;
+    word-wrap: break-word;
 }
 
 .btn-add-comment{
