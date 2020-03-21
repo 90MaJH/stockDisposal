@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'mobileWeb/css/base/base.css' %}">
+<link rel="stylesheet" href="{% static 'mobileWeb/css/common/common.css' %}">
+
+{% include 'mobileWeb/inc/common/docType.html' %}
+<html>
+<head>
+    {% include 'mobileWeb/inc/common/meta.html' %}
+    <title>PocketMarket</title>
+    {% include 'mobileWeb/inc/common/scriptInclude.html' %}
+    {% include 'mobileWeb/js/common/common.html' %}
+</head>
+<body>
+<div class="wrapper">
+    {% include 'mobileWeb/inc/common/header.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'mobileWeb/inc/common/footer.html' %}
+
+</div>
+</body>
+</html>
+

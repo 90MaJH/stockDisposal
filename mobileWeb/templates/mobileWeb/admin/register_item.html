@@ -6,7 +6,7 @@
 </head>
 <body style="border:1px solid black">
 <h1>register information of the mart</h1>
-<form method="POST" class="post-form">
+<form enctype="multipart/form-data" method="POST" class="post-form">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import *
-from datetime import datetime
+from .models import *
+from datetime import datetime, date
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -14,11 +15,14 @@ from datetime import datetime, timedelta
 @csrf_exempt
 def index(request):
     try:
-        marts = MartModel.objects.filter(use_yn__exact='Y').values('id', 'name', 'imageFileNo', 'xPosition',
-                                                                   'yPosition')
+        endDttm = datetime.now()
+        startDttm = endDttm - timedelta(days=1)
+
+        marts = MartModel.objects.filter(use_yn__exact='Y').prefetch_related('martcomment_set')
+        for mart in marts:
+            mart.martcomment = mart.martcomment_set.filter(ins_dttm__range=[startDttm, endDttm])
         items = ItemModel.objects.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
-            expirationDate__gte=datetime.now()).filter(stock__gt=0).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment', 'stock').order_by('mart_id',
-                                                                                                           'seq')
+            expirationDate__gte=datetime.now()).filter(stock__gt=0).values('id', 'mart', 'name', 'originalPrice', 'discountPrice', 'expirationDate', 'comment', 'stock').order_by('mart_id')
         browser = request.META['HTTP_USER_AGENT']
         ip = get_ip(request)
         statistics = StatisticsModel(action='openIndexPage', browser=browser, ip=ip)
@@ -27,6 +31,27 @@ def index(request):
         return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
     except Exception as ex:
         print('Error occured : ', ex)
+
+@csrf_exempt
+def addComment(request):
+    try:
+        mart = MartModel.objects.get(id__exact=request.POST['martId'])
+        comment = request.POST['comment']
+        martComment = MartComment(mart=mart, comment=comment)
+        martComment.save()
+        return HttpResponse("1")
+    except Exception as ex:
+        print('Error occured : ', ex)
+
+@csrf_exempt
+def martDetail(request, martId):
+    try:
+        mart = MartModel.objects.filter(id__exact=martId).prefetch_related('itemmodel_set')[0]
+        items = mart.itemmodel_set.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
+            expirationDate__gte=datetime.now()).filter(stock__gt=0)
+        return render(request, 'mobileWeb/martDetail/martDetail.html', {'mart':mart, 'items':items})
+    except Exception as ex:
+        print('error occured : ', ex)
 
 @csrf_exempt
 def registerMart(request):
@@ -46,18 +71,9 @@ def registerMart(request):
 def registerItem(request):
     try:
         if request.method == 'POST':
-            form = ItemForm(request.POST)
+            form = ItemForm(request.POST, request.FILES)
             if form.is_valid():
-                mart = form.cleaned_data['mart']
-                seq = ItemModel.objects.filter(mart__exact=mart).values('seq').order_by('-seq')[:1]
-                if seq:
-                    seq = seq[0]['seq'] + 1
-                else:
-                    seq = 1
-                item = ItemModel(mart=mart, seq=seq, name=form.cleaned_data['name'], originalPrice=form.cleaned_data['originalPrice'],
-                                 discountPrice=form.cleaned_data['discountPrice'], expirationDate=form.cleaned_data['expirationDate'],
-                                 comment=form.cleaned_data['comment'], stock=form.cleaned_data['stock'])
-                item.save()
+                form.save()
                 form = ItemForm()
                 return render(request, 'mobileWeb/admin/register_item.html', {'form': form})
         else:

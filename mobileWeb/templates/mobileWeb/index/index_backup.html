@@ -1,0 +1,84 @@
+{% extends 'mobileWeb/inc/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block content %}
+    {% include 'mobileWeb/inc/index/index.html' %}
+
+    <div id="map" class="map"></div>
+
+    <div class="container-index">
+        <!-- this row will wrapping foreach-->
+
+        {% for mart in marts %}
+            <div class="row">
+                <div class="col-xs-5" onclick="martClick({{ mart }})">
+                    {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
+                        <img src="{% static path %}" class="image-mart">
+                        <br>
+                        <h3>{{ mart.name }}</h3>
+                    {% endwith %}
+                </div>
+
+                <div class="col-xs-7" style="height:200px; overflow:scroll" data-toggle="modal" data-target="#martModal"
+                     data-whatever="{{ mart.id }}_{{ mart.name }}">
+                    {% for item in items %}
+                        {% if mart.id == item.mart %}
+                            <div>
+                                <h4 class="medium-purple">{{ item.name }}</h4>
+                                {% if item.discountPrice == 1 or item.discountPrice == 100 %}
+                                    <h6>
+                                        <span class="red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
+                                    </h6>
+                                {% else %}
+                                    <h6>할인판매가 : {{ item.discountPrice }}원
+                                        <span class="red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
+                                    </h6>
+                                {% endif %}
+
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <!-- Mart Modal -->
+        <div class="modal fade" id="martModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Modal -->
+        <div class="modal fade" id="itemModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="itemModal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></h4>
+                    </div>
+                    <div class="itemModal-body" id="itemModal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소
+                        </button>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,446 +1,62 @@
+{% extends 'mobileWeb/inc/base/base.html' %}
 {% load static %}
 {% load mathfilters %}
 
-<!DOCTYPE html>
-<html>
+{% block content %}
+    {% include 'mobileWeb/inc/index/index.html' %}
 
-<head>
-    <style>
-        .row {
-            border-bottom: 1px solid darkblue;
-            margin: 5px 0px;
-        }
-    </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159115722-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    <div id="map" class="map"></div>
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+    <div class="container-index">
+        <!-- this row will wrapping foreach-->
 
-        gtag('js', new Date());
+        {% for mart in marts %}
+            <div class="row row-marts">
+                <h3 onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')" class="title-mart text-center">{{ mart.name }}</h3>
+                <div class="row">
+                    <div class="col-6">
+                        {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
+                            <img src="{% static path %}" class="img-thumbnail" onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')">
+                        {% endwith %}
 
-        gtag('config', 'UA-159115722-1');
-    </script>
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>포켓마켓</title>
-
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40b9e58744cbe7d0cb367e51c07eb4"></script>
-
-
-    <script>
-        var timerId;
-        var map;
-        var markers = [];
-        var markerCount = 0;
-
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-
-        function writeMartModal(martId, martName) {
-            console.log("martID : " + martId);
-            document.getElementById('modal-body').innerHTML = '';
-
-
-            document.getElementById('modal-title').innerHTML = martName;
-            {% for item in items %}
-                var itemMartId = {{ item.mart }};
-                if (martId == itemMartId) {
-                    var itemId = {{ item.id }};
-                    var itemName = '{{ item.name }}';
-                    var itemPrice = {{ item.discountPrice }};
-                    var itemExpirationDate = '{{ item.expirationDate|date:"m월d일 H시 i분 까지" }}';
-                {% autoescape off %}
-                    var itemComment = '{{ item.comment }}';
-                {% endautoescape %}
-                    var html = "";
-                    var div = document.createElement('div');
-                    html += `
-                    <div>
-                    <div data-toggle="modal" data-target="#itemModal" data-whatever="${martName}_${itemId}_${itemName}">
-                        <h4 style = "color:mediumpurple;" > ${itemName} </h4>
-                    <h6> ${itemPrice}원 </h6>
-                    <h6> ${itemExpirationDate} </h6>
+                        <h6>{{ mart.martInfo }}</h6>
                     </div>
-                    {% autoescape off %}
-                    <h6 style="color:red">${itemComment}</h6>
-                    {% endautoescape %}
-                    </div>
-                `
-                    div.innerHTML = html;
-                    document.getElementById('modal-body').appendChild(div);
-                }
-
-            {% endfor %}
-        };
-
-        function markerClick(martId, martName) {
-            addStatistics('markerClick');
-            $('#martModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                writeMartModal(martId, martName);
-            });
-        }
-
-        function stopTimer() {
-            clearInterval(timerId);
-            document.getElementById('itemModal-title').innerHTML = '';
-        }
-
-        function purchaseItem() {
-            addStatistics('purchaseItem');
-            var conf = confirm("정말 구매하시겠습니까?");
-            if (conf) {
-                itemId = $('#itemModal-title').data('item');
-                $.ajax({
-                    type: 'POST',
-                    url: '/purchaseItem',
-                    data: {
-                        item: itemId
-                    },
-                    success: function (data) {
-                        if (data == "1") location.reload();
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("ajax error : " + textStatus + "\n" + errorThrown);
-                    },
-                });
-            }
-        };
-
-        function addStatistics(action) {
-            $.ajax({
-                type: 'POST',
-                url: '/addStatistics',
-                data: {
-                    action: action
-                },
-                success: function (data) {
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("arjax error : " + textStatus + "\n" + errorThrown);
-                },
-            });
-        };
-
-        function martClick(mart) {
-            console.log(mart.id);
-            // 이동할 위도 경도 위치를 생성합니다
-            xPosition = mart.xPosition;
-            yPosition = mart.yPosition;
-            var moveLatLon = new kakao.maps.LatLng(xPosition, yPosition);
-
-            // 지도 중심을 이동 시킵니다
-            map.setCenter(moveLatLon);
-
-            var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다
-                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-                imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-                markerPosition = new kakao.maps.LatLng(xPosition, yPosition); // 마커가 표시될 위치입니다
-
-// 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                position: markerPosition,
-                image: markerImage // 마커이미지 설정
-            });
-
-// 마커가 지도 위에 표시되도록 설정합니다
-            marker.setMap(map);
-            setTimeout("markerDelete()", 500);
-            markers.push(marker);
-
-
-            $('html,body').scrollTop(0);
-        }
-
-        function setMarkers(map) {
-            for (var i = 0; i < markerCount; i++) {
-                markers[i].setMap(map);
-            }
-        }
-
-        function hideMarkers(map) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
-            }
-        }
-
-        function markerDelete() {
-            hideMarkers(null);
-            setMarkers(map);
-        }
-
-        $(document).ready(function () {
-            var notify = '######사용방법######';
-            notify += '\n\n';
-            notify += '1) 매장 선택(우측상품목록).';
-            notify += '\n';
-            notify += '2) 상품 선택.';
-            notify += '\n';
-            notify += '3) 팝업화면 점원한테 보여주기.';
-            notify += '\n\n';
-            notify += '기타 문의사항 있으시면 010-9410-9188로 문의 바랍니다. 감사합니다.';
-            alert(notify);
-            {#setTimeout("location.reload()",30 * 1000);#}
-
-            var csrftoken = getCookie('csrftoken');
-            $.ajaxSetup({
-                beforeSend: function (xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    }
-                }
-            });
-
-            $('#martModal').on('show.bs.modal', function (event) {
-                addStatistics('loadMartModal');
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                var mart = button.data('whatever'); // Extract info from data-* attributes
-
-                mart = mart.split('_');
-                var martId = mart[0];
-                var martName = mart[1];
-                {#var modal = $(this);#}
-
-                writeMartModal(martId, martName);
-            });
-
-            $('#itemModal').on('show.bs.modal', function (event) {
-                addStatistics('loadItemModal');
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                var variables = button.data('whatever'); // Extract info from data-* attributes
-
-                document.getElementById('itemModal-body').innerHTML = '';
-                var html = '';
-
-                variables = variables.split('_');
-                var martName = variables[0];
-                var itemId = variables[1];
-                var itemName = variables[2];
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/selectItem',
-                    data: {
-                        item: itemId
-                    },
-                    success: function (data) {
-                        if (data == "1") {
-                            alert('이미 판매된 상품입니다.');
-                            location.reload();
-                            return;
-                        } else if (data == "2") {
-                            alert('삭제된 상품입니다.');
-                            location.reload();
-                            return;
-                        } else {
-                            var div = document.createElement('div');
-                            html += `
-                            <h4 style="color:purple;">이 화면을 점원에게 보여주세요.</h4>
-                    ${martName}의 ${itemName}을 구매합니다.
-                `
-                            div.innerHTML = html;
-                            document.getElementById('itemModal-body').appendChild(div);
-                            $('#itemModal-title').data('item', itemId);
-
-                            var timer = 30;
-                            timerId = setInterval(countdown, 1000);
-
-                            function countdown() {
-                                if (timer == -1) {
-                                    clearTimeout(timerId);
-                                    $('#itemModal').modal('hide')
-                                } else {
-                                    document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
-                                    timer--;
-                                }
-                            }
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("arjax error : " + textStatus + "\n" + errorThrown);
-                    },
-                });
-
-
-            });
-
-            /////////////////
-            /////kakao map///
-            /////////////////
-            var mapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div
-                mapOption = {
-                    center: new kakao.maps.LatLng(37.586611, 127.029212), // 이미지 지도의 중심좌표
-                    level: 3, // 이미지 지도의 확대 레벨
-                    marker: markers // 이미지 지도에 표시할 마커
-                };
-
-
-            map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-            // 이미지 지도에 표시할 마커입니다
-            // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다
-            {#var markers = [];#}
-
-            {% for mart in marts %}
-                addMarker(new kakao.maps.LatLng({{ mart.xPosition }}, {{ mart.yPosition }}), '{{ mart.id }}', '{{ mart.name }}');
-            {% endfor %}
-
-
-            function addMarker(position, martId, martName) {
-
-                // 마커를 생성합니다
-                var marker = new kakao.maps.Marker({
-                    position: position
-                });
-
-                // 마커가 지도 위에 표시되도록 설정합니다
-                marker.setMap(map);
-
-                var iwContent = `
-                <div style="padding:5px;" data-whatever="${martId}_${martName}" data-toggle="modal" data-target="#martModal">
-                ${martName}
-                </div>
-            `
-                iwPosition = position; //인포윈도우 표시 위치입니다
-
-// 인포윈도우를 생성합니다
-                var infowindow = new kakao.maps.InfoWindow({
-                    position: iwPosition,
-                    content: iwContent
-                });
-
-// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-                infowindow.open(map, marker);
-
-                // 생성된 마커를 배열에 추가합니다
-                markers.push(marker);
-                markerCount++;
-            }
-
-
-        });
-
-    </script>
-
-
-</head>
-
-<body>
-<div id="map" style="width:80%;height:300px; margin:20px auto; border-radius: 10px;"></div>
-
-
-<div style="width:90%; margin:auto">
-    <!-- this row will wrapping foreach-->
-
-    {% for mart in marts %}
-        <div class="row">
-            <div class="col-xs-5" onclick="martClick({{ mart }})">
-                {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
-                    <img src="{% static path %}" style="width:120px; height:120px; margin-top:10px;">
-                    <br>
-                    <h3>{{ mart.name }}</h3>
-                {% endwith %}
-            </div>
-
-            <div class="col-xs-7" style="height:200px; overflow:scroll" data-toggle="modal" data-target="#martModal"
-                 data-whatever="{{ mart.id }}_{{ mart.name }}">
-                {% for item in items %}
-                    {% if mart.id == item.mart %}
-                        <div>
-                            <h4 style="color:mediumpurple;">{{ item.name }}</h4>
-                            {% if item.discountPrice == 1 or item.discountPrice == 100 %}
-                                <h6><span
-                                        style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
-                                </h6>
-                            {% else %}
-                                <h6>할인판매가 : {{ item.discountPrice }}원 <span
-                                        style="color:red">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span>
-                                </h6>
+                    <div class="col-6" class="items" data-toggle="modal" data-target="#martModal"
+                         data-whatever="{{ mart.id }}_{{ mart.name }}">
+                        {% for item in items %}
+                            {% if mart.id == item.mart %}
+                                <div>
+                                    <h4 class="title-item">{{ item.name }}</h4>
+                                    {% if item.discountPrice == 1 or item.discountPrice == 100 %}
+                                        <h6>
+                                            <span class="ratio">
+                                                {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
+                                            </span>
+                                        </h6>
+                                    {% else %}
+                                        <h6>{{ item.discountPrice }}원
+                                            <span class="ratio">
+                                                {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
+                                            </span>
+                                        </h6>
+                                    {% endif %}
+                                </div>
                             {% endif %}
 
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    {% endfor %}
-    <!-- Mart Modal -->
-    <div class="modal fade" id="martModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="modal-title"></h4>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="modal-body" id="modal-body">
 
+                <div class="col-12">
+                    {% for martComment in mart.martcomment %}
+                        <h6>-{{ martComment.comment }}</h6>
+                    {% endfor %}
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                <button class="btn-add-comment" onClick="addComment('{{ mart.id }}')">코멘트를 달아주세요</button>
             </div>
-        </div>
+        {% endfor %}
+
+
     </div>
 
-    <!-- Item Modal -->
-    <div class="modal fade" id="itemModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="itemModal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></h4>
-                </div>
-                <div class="itemModal-body" id="itemModal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소</button>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-</body>
-
-</html>
+{% endblock %}

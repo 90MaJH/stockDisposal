@@ -10,12 +10,18 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name='index'),
+
     path('index', views.index, name='index'),
+    path('addComment', views.addComment, name='addComment'),
+
+    path('martDetail/<int:martId>', views.martDetail, name='martDetail'),
+
     path('registerMart', views.registerMart, name='registerMart'),
     path('registerItem', views.registerItem, name='registerName'),
     path('delete', views.delete, name='delete'),
     path('deleteMart', views.deleteMart, name='deleteMart'),
     path('deleteItem', views.deleteItem, name='deleteItem'),
+
     path('purchaseItem', views.purchaseItem, name='purchaseItem'),
     path('selectItem', views.selectItem, name='selectItem'),
     path('addStatistics', views.addStatistics, name='addStatistics'),

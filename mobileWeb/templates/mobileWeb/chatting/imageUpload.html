@@ -16,7 +16,7 @@
     // form upload
     $('#id_ajax_upload_form').submit(function (e) {
         e.preventDefault();
-        $form = $(this)
+        $form = $(this);
         var formData = new FormData(this);
         $.ajax({
             url: window.location.pathname,

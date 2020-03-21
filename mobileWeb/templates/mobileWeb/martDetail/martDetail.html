@@ -1,0 +1,56 @@
+{% extends 'mobileWeb/inc/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block content %}
+    {% include 'mobileWeb/inc/martDetail/martDetail.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center title-mart">
+                <span>{{ mart.name }}</span>
+            </div>
+            {% for item in items %}
+                <div class="col-6" data-toggle="modal" data-target="#itemModal"
+                     data-whatever="{{ mart.name }}_{{ item.id }}_{{ item.name }}">
+                    <div class="text-center item-name">
+                        <span> {{ item.name }} </span>
+                    </div>
+                    {% if item.image %}
+                        <img class='image-item' src='{{ item.image.url }}' alt="">
+                    {% else %}
+                        <img class='image-item' src="{% static '/mobileWeb/images/noImage.png' %}" alt="">
+                    {% endif %}
+                    <div>
+                        <span class="item-original-price">정가 : {{ item.originalPrice }}원 </span><br>
+                        <span class="item-discount-price">할인판매가 : {{ item.discountPrice }}원 </span>
+                        <span class="item-discount-ratio">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}%</span><br>
+                        <span class="item-expiration-date"> {{ item.expirationDate|date:"m월d일 H시 i분 까지" }} </span><br>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Item Modal -->
+    <div class="modal fade" id="itemModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="itemModal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></h4>
+                </div>
+                <div class="itemModal-body" id="itemModal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소
+                    </button>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

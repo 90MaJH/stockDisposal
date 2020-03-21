@@ -1,0 +1,45 @@
+.map {
+    width: 80%;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.container-index {
+    width: 90%;
+    margin: auto
+}
+
+.row-marts{
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.image-mart {
+    width: 120px;
+    height: 120px;
+    margin-top: 10px;
+}
+
+.title-item{
+    color:#262626;
+}
+
+.ratio{
+    color:#f15733;
+}
+
+.image-mart{
+    width:100%
+}
+
+.items{
+    overflow: scroll;
+}
+
+.btn-add-comment{
+    border-radius: 15px;
+    border: 0px;
+    background-color: #fffcf2;
+    color: #93cf8a;
+}

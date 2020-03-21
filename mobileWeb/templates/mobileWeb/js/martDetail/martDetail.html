@@ -1,0 +1,92 @@
+{% block javascript %}
+    <script type="text/javascript">
+        var timerId;
+
+        function purchaseItem() {
+            addStatistics('purchaseItem');
+            var conf = confirm("정말 구매하시겠습니까?");
+            if (conf) {
+                itemId = $('#itemModal-title').data('item');
+                $.ajax({
+                    type: 'POST',
+                    url: '/purchaseItem',
+                    data: {
+                        item: itemId
+                    },
+                    success: function (data) {
+                        if (data == "1") location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("ajax error : " + textStatus + "\n" + errorThrown);
+                    },
+                });
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerId);
+            document.getElementById('itemModal-title').innerHTML = '';
+        }
+
+        $(document).ready(function () {
+            $('#itemModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var variables = button.data('whatever'); // Extract info from data-* attributes
+
+                document.getElementById('itemModal-body').innerHTML = '';
+                var html = '';
+
+                variables = variables.split('_');
+                var martName = variables[0];
+                var itemId = variables[1];
+                var itemName = variables[2];
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/selectItem',
+                    data: {
+                        item: itemId
+                    },
+                    success: function (data) {
+                        if (data == "1") {
+                            alert('이미 판매된 상품입니다.');
+                            location.reload();
+                            return;
+                        } else if (data == "2") {
+                            alert('삭제된 상품입니다.');
+                            location.reload();
+                            return;
+                        } else {
+                            var div = document.createElement('div');
+                            html += `
+<h4 style="color:purple;">이 화면을 점원에게 보여주세요.</h4>
+${martName}의 ${itemName}을 구매합니다.
+`
+                            div.innerHTML = html;
+                            document.getElementById('itemModal-body').appendChild(div);
+                            $('#itemModal-title').data('item', itemId);
+
+                            var timer = 30;
+                            timerId = setInterval(countdown, 1000);
+
+                            function countdown() {
+                                if (timer == -1) {
+                                    clearTimeout(timerId);
+                                    $('#itemModal').modal('hide')
+                                } else {
+                                    document.getElementById('itemModal-title').innerHTML = timer + ' seconds remaining';
+                                    timer--;
+                                }
+                            }
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("arjax error : " + textStatus + "\n" + errorThrown);
+                    },
+                });
+            });
+
+
+        });
+    </script>
+{% endblock %}
