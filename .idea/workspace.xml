@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/common/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/index/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/martDetail/martDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/martDetail/martDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/index/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +146,7 @@
       <workItem from="1582855015441" duration="54564000" />
       <workItem from="1584003594857" duration="130000" />
       <workItem from="1584021346054" duration="10621000" />
-      <workItem from="1584153664022" duration="48640000" />
+      <workItem from="1584153664022" duration="48838000" />
     </task>
     <servers />
   </component>
