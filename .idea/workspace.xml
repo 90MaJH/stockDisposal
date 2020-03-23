@@ -3,8 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/martDetail/martDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/martDetail/martDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/martDetail/martDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/martDetail/martDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages/martDetail/martDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index/index_backup.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index_backup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/martDetail/martDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +67,11 @@
       <recent name="$PROJECT_DIR$/mobileWeb/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages" />
       <recent name="$PROJECT_DIR$/mobileWeb/static/mobileWeb/images" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/base" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/index" />
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
@@ -148,7 +157,7 @@
       <workItem from="1582855015441" duration="54564000" />
       <workItem from="1584003594857" duration="130000" />
       <workItem from="1584021346054" duration="10621000" />
-      <workItem from="1584153664022" duration="45520000" />
+      <workItem from="1584153664022" duration="46012000" />
     </task>
     <servers />
   </component>

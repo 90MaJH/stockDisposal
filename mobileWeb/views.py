@@ -28,7 +28,7 @@ def index(request):
         statistics = StatisticsModel(action='openIndexPage', browser=browser, ip=ip)
         statistics.save()
 
-        return render(request, 'mobileWeb/index/index.html', {'marts': marts, 'items': items})
+        return render(request, 'mobileWeb/userPages/index/index.html', {'marts': marts, 'items': items})
     except Exception as ex:
         print('Error occured : ', ex)
 
@@ -49,7 +49,7 @@ def martDetail(request, martId):
         mart = MartModel.objects.filter(id__exact=martId).prefetch_related('itemmodel_set')[0]
         items = mart.itemmodel_set.filter(stockYn__exact='Y').filter(use_yn__exact='Y').filter(
             expirationDate__gte=datetime.now()).filter(stock__gt=0)
-        return render(request, 'mobileWeb/martDetail/martDetail.html', {'mart':mart, 'items':items})
+        return render(request, 'mobileWeb/userPages/martDetail/martDetail.html', {'mart':mart, 'items':items})
     except Exception as ex:
         print('error occured : ', ex)
 
@@ -60,7 +60,7 @@ def registerMart(request):
             form = MartForm(request.POST)
             if form.is_valid():
                 form.save()
-                return render(request, 'mobileWeb/index/index.html')
+                return render(request, 'mobileWeb/userPages/index/index.html')
         else:
             form = MartForm()
             return render(request, 'mobileWeb/admin/register_mart.html', {'form': form})

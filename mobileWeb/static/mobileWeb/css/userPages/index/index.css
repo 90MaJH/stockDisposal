@@ -47,6 +47,12 @@
     max-height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.container-item-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .comment{
