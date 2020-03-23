@@ -29,7 +29,9 @@
         }
 
         $(document).ready(function () {
+                console.log($('#itemModal'));
             $('#itemModal').on('show.bs.modal', function (event) {
+                console.log($('#itemModal'));
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var variables = button.data('whatever'); // Extract info from data-* attributes
 
@@ -59,8 +61,8 @@
                         } else {
                             var div = document.createElement('div');
                             html += `
-<h4 style="color:purple;">이 화면을 점원에게 보여주세요.</h4>
-${martName}의 ${itemName}을 구매합니다.
+<span class="confirm-clerk">이 화면을 점원에게 보여주세요.</span><br>
+<span class="confirm-info">${martName}의 ${itemName}을 구매합니다.</span>
 `
                             div.innerHTML = html;
                             document.getElementById('itemModal-body').appendChild(div);
@@ -85,8 +87,8 @@ ${martName}의 ${itemName}을 구매합니다.
                     },
                 });
             });
-
-
         });
+
+
     </script>
 {% endblock %}

@@ -2,8 +2,9 @@
 {% load static %}
 {% load mathfilters %}
 
+
 {% block content %}
-    {% include 'mobileWeb/inc/martDetail/martDetail.html' %}
+{% include 'mobileWeb/inc/martDetail/martDetail.html' %}
 
     <div class="container">
         <div class="row">
@@ -30,8 +31,9 @@
                         {% if item.discountPrice > 200 %}
                             <span class="item-discount-price">할인판매가 : {{ item.discountPrice }}원 </span>
                         {% endif %}
-                        <span class="item-discount-ratio">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}%</span><br>
+                        <span class="item-discount-ratio">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span><br>
                         <span class="item-expiration-date"> {{ item.expirationDate|date:"m월d일 H시 i분 까지" }} </span><br>
+                        <span class="item-comment"> {{ item.comment }} </span><br>
                     </div>
                 </div>
 
@@ -45,7 +47,7 @@
             <div class="modal-content">
                 <div class="itemModal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></h4>
+                    <span class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></span>
                 </div>
                 <div class="itemModal-body" id="itemModal-body">
 
@@ -57,5 +59,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

@@ -1,33 +1,51 @@
-.mart-name{
+.mart-name {
 
 }
 
-.image-item{
+.image-item {
     width: 80%;
 }
 
-.item-name{
-    font-size: 120%;
+.item-name {
     color: #f15733;
-    border : 1px dashed #5f3079;
+    border: 1px dashed #5f3079;
     border-radius: 15px;
     margin: 20px 0px 0px 0px;
 }
 
-.item-original-price{
+.item-original-price {
     color: #cccccc;
 }
 
-.item-discount-price{
+.item-discount-price {
     color: #000000;
     font-size: 90%
 }
 
-.item-discount-ratio{
+.item-discount-ratio {
     color: #f15733;
     font-size: 80%;
 }
 
-.item-expiration-date{
+.item-expiration-date {
     font-size: 90%;
+}
+
+.item-comment {
+
+}
+
+.itemModal-title{
+    padding-left: 3px;
+}
+
+.confirm-clerk {
+    color: #5f3079;
+    font-size: 120%;
+    padding-left: 10px;
+}
+
+.confirm-info {
+    color: #f15733;
+    padding-left: 10px;
 }
