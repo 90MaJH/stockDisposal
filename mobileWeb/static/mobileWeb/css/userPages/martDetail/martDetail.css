@@ -1,5 +1,12 @@
-.mart-name {
+.title-mart {
+    width: 100%;
+    background-color: #f6d2c3;
+    color: #5f3079;
+    padding-top: 8px;
+}
 
+.mart-name{
+    margin-top: 8px;
 }
 
 .image-item {

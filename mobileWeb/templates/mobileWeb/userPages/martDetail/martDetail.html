@@ -9,13 +9,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center title-mart">
-                <span>{{ mart.name }}</span>
+                <span class="font-title mart-name">{{ mart.name }}</span>
             </div>
             {% for item in items %}
                 <div class="col-6" data-toggle="modal" data-target="#itemModal"
                      data-whatever="{{ mart.name }}_{{ item.id }}_{{ item.name }}">
                     <div class="text-center item-name">
-                        <span> {{ item.name }} </span>
+                        <span class="font-subtitle"> {{ item.name }} </span>
                     </div>
                     <div class="text-center">
                         {% if item.image %}
@@ -26,14 +26,14 @@
                     </div>
                     <div>
                         {% if item.originalPrice > 200 %}
-                            <span class="item-original-price">정가 : {{ item.originalPrice }}원 </span><br>
+                            <span class="item-original-price font-context">정가 : {{ item.originalPrice }}원 </span><br>
                         {% endif %}
                         {% if item.discountPrice > 200 %}
-                            <span class="item-discount-price">할인판매가 : {{ item.discountPrice }}원 </span>
+                            <span class="item-discount-price font-context">할인판매가 : {{ item.discountPrice }}원 </span>
                         {% endif %}
-                        <span class="item-discount-ratio">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span><br>
-                        <span class="item-expiration-date"> {{ item.expirationDate|date:"m월d일 H시 i분 까지" }} </span><br>
-                        <span class="item-comment"> {{ item.comment }} </span><br>
+                        <span class="item-discount-ratio font-context">{{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인</span><br>
+                        <span class="item-expiration-date font-context"> {{ item.expirationDate|date:"m월d일 H시 i분 까지" }} </span><br>
+                        <span class="item-comment font-context"> {{ item.comment }} </span><br>
                     </div>
                 </div>
 

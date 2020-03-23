@@ -12,8 +12,8 @@
 
         {% for mart in marts %}
             <div class="row row-marts">
-                <h3 onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')"
-                    class="title-mart text-center">{{ mart.name }}</h3>
+                <span onclick="martClick('{{ mart.xPosition }}', '{{ mart.yPosition }}')"
+                    class="title-mart text-center font-title">{{ mart.name }}</span>
                 <div class="row">
                     <div class="col-6">
                         {% with "/mobileWeb/images/"|add:mart.imageFileNo|add:".png" as path %}
@@ -27,14 +27,14 @@
                         {% for item in items %}
                             {% if mart.id == item.mart %}
                                 <div class="container-item">
-                                    <span class="title-item">{{ item.name }}</span><br>
+                                    <span class="title-item font-subtitle">{{ item.name }}</span><br>
                                     {% if item.discountPrice <= 200 %}
-                                        <span class="ratio">
+                                        <span class="ratio font-context">
                                                 {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
                                             </span>
                                     {% else %}
-                                        <span class="item-discount-price">{{ item.discountPrice }}원</span>
-                                        <span class="ratio">
+                                        <span class="item-discount-price font-context">{{ item.discountPrice }}원</span>
+                                        <span class="ratio font-context">
                                                 {{ item.originalPrice|sub:item.discountPrice|div:item.originalPrice|mul:100|floatformat:"0" }}% 할인
                                             </span>
                                     {% endif %}
@@ -47,12 +47,12 @@
 
                 <div class="col-12">
                     {% for martComment in mart.martcomment %}
-                        <div class="comment">
+                        <div class="comment font-context">
                             -{{ martComment.comment }}<br>
                         </div>
                     {% endfor %}
                 </div>
-                <button class="btn-add-comment" onClick="addComment('{{ mart.id }}')">코멘트를 달아주세요</button>
+                <button class="btn-add-comment font-point" onClick="addComment('{{ mart.id }}')">코멘트를 달아주세요</button>
             </div>
         {% endfor %}
 
