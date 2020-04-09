@@ -20,7 +20,7 @@ def signin(request):
         login_request_uri = 'https://kauth.kakao.com/oauth/authorize?'
 
         client_id = '0740ded9c3a412ea9c59d6aabf872ad3'
-        redirect_uri = 'http://pocketmarket.site:8000/oauth'
+        redirect_uri = 'http://www.pocketmarket.site:8000/oauth'
 
         login_request_uri += 'client_id=' + client_id
         login_request_uri += '&redirect_uri=' + redirect_uri
