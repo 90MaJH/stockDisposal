@@ -1,0 +1,25 @@
+{% extends 'mobileWeb/inc/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block content %}
+    {% include 'mobileWeb/inc/userPages/user/profile.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">구매내역</div>
+            <div class="col-12">
+                {% if request.COOKIES.userEmail %}
+                    <a href="/signout/">
+                        <span>로그아웃</span>
+                    </a>
+                {% else %}
+                    <a href="/signin/">
+                        <span>로그인</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

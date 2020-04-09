@@ -13,7 +13,7 @@
             </div>
             {% for item in items %}
                 <div class="col-6" data-toggle="modal" data-target="#itemModal"
-                     data-whatever="{{ mart.name }}_{{ item.id }}_{{ item.name }}_{{ item.discountPrice }}">
+                     data-whatever="{{ mart.name }}_{{ item.id }}_{{ item.name }}">
                     <div class="text-center item-name">
                         <span class="font-subtitle"> {{ item.name }} </span>
                     </div>
@@ -47,14 +47,13 @@
             <div class="modal-content">
                 <div class="itemModal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <span class="itemModal-title" id="itemModal-title"></span>
+                    <span class="itemModal-title" id="itemModal-title" onclick="purchaseItem()"></span>
                 </div>
                 <div class="itemModal-body" id="itemModal-body">
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="purchaseItem()">구매</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" onClick="stopTimer()">취소
                     </button>
                 </div>

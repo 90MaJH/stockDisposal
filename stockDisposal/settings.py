@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,6 +34,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +46,14 @@ INSTALLED_APPS = [
     'mathfilters',
     'rest_framework',
     'api',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #provider
+    'allauth.socialaccount.providers.kakao'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +145,18 @@ SERIALIZATION_MODULES = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
+
+
+
+#kakao연동
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+#pg연동
+IAMPORT_KEY = '6797623204100128'
+IAMPORT_SECRET = 'Ujcz2LnJuhr9yOoDeuHkFUaOmBFSEp4yIh8K3vtxNUGmI5ZXAGhfAs4X3JPH8TgQboAeU4LHYs3Hy2E8'
