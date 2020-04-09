@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/admin/test.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages/user/profile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/admin/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/admin/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages/user/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/admin/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/user/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail_backup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/user/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/user/signIn.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/user/signUp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages/martDetail/martDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/martDetail/martDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail/martDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileWeb/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stockDisposal/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/stockDisposal/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +148,7 @@
       <workItem from="1584003594857" duration="130000" />
       <workItem from="1584021346054" duration="10621000" />
       <workItem from="1584153664022" duration="54601000" />
-      <workItem from="1585921576315" duration="18928000" />
+      <workItem from="1585921576315" duration="19283000" />
     </task>
     <servers />
   </component>
