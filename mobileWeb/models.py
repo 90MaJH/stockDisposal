@@ -81,7 +81,46 @@ class StatisticsModel(models.Model):
 
 
 
+##trade Models
+class trHeaderModel(models.Model):
+    date = models.DateField(blank=False, auto_now_add=True)
+    receipt_no = models.IntegerField(blank=False, default=1)
+    price = models.IntegerField(blank=False, default=1)
+    userEmail = models.CharField(blank=False, default='default', max_length=200)
+    ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
+    ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    upt_dttm = models.DateTimeField(blank=False, auto_now=True)
+    upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    # mart = models.ForeignKey('martModel', models.DO_NOTHING)
+    # item = models.ForeignKey('ItemModel', models.DO_NOTHING)
 
+class trItemModel(models.Model):
+    date = models.DateField(blank=False, auto_now_add=True)
+    receipt_no = models.IntegerField(blank=False, default=1)
+    trHeader = models.ForeignKey('trHeaderModel', models.DO_NOTHING)
+    seq = models.IntegerField(blank=False, default=1)
+    mart = models.ForeignKey('martModel', models.DO_NOTHING)
+    item = models.ForeignKey('itemModel', models.DO_NOTHING)
+    amount = models.IntegerField(blank=False, default=1)
+    unitPrice = models.IntegerField(blank=False, default=1)
+    totalPrice = models.IntegerField(blank=False, default=1)
+    ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
+    ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    upt_dttm = models.DateTimeField(blank=False, auto_now=True)
+    upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+
+
+class trPaymentModel(models.Model):
+    date = models.DateField(blank=False, auto_now_add=True)
+    receipt_no = models.IntegerField(blank=False, default=1)
+    trHeader = models.ForeignKey('trHeaderModel', models.DO_NOTHING)
+    seq = models.IntegerField(blank=False, default=1)
+    cardComp = models.IntegerField(blank=False, default=0)
+    cardNo = models.CharField(blank=False, max_length=16, default='0001000200030004')
+    ins_dttm = models.DateTimeField(blank=False, auto_now_add=True)
+    ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+    upt_dttm = models.DateTimeField(blank=False, auto_now=True)
+    upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
 
 
 #####tmp#####

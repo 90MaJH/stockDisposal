@@ -15,6 +15,8 @@
                 var userEmail = getCookie('userEmail');
 
                 if (userEmail) {
+                    userEmail = userEmail.replace(/\"/gi, '');
+
                     var itemId = $('#itemModal-title').data('item');
                     var itemPrice = $('#itemModal-title').data('itemPrice');
                     var itemName = $('#itemModal-title').data('itemName');
@@ -28,7 +30,7 @@
                         // 결제요청
                         IMP.request_pay({
                             // name과 amount만 있어도 결제 진행가능
-                            pg: 'kakaopay', // pg 사 선택
+                            pg: 'html5_inicis', // pg 사 선택
                             pay_method: 'card',
                             merchant_uid: 'merchant_' + new Date().getTime(),
                             name: itemName,

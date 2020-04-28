@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from mobileWeb.views import *
 
 from django.conf.urls.static import static
 from django.conf.urls import include, url
@@ -22,7 +23,6 @@ urlpatterns = [
     path('oauth', views.oauth, name='oauth'),
 
     path('martDetail/<int:martId>', views.martDetail, name='martDetail'),
-    path('trade/<int:itemId>', views.trade, name='trade'),
 
     path('registerMart', views.registerMart, name='registerMart'),
     path('registerItem', views.registerItem, name='registerName'),
