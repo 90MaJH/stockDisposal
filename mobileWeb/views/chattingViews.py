@@ -9,8 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def fsOe9ms1b(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='1')\
-                       |Chatting.objects.filter(userId__exact='1')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='1')\
+                       |Chatting.objects.filter(userId__exact='1'))[:20]
 
         return render(request, 'mobileWeb/chatting/fsOe9ms1b.html', {'chattingList':chattingList})
     except Exception as ex:
@@ -19,8 +19,8 @@ def fsOe9ms1b(request):
 @csrf_exempt
 def fsOe9ms1b_ma(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='1')\
-                       |Chatting.objects.filter(userId__exact='1')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='1')\
+                       |Chatting.objects.filter(userId__exact='1'))[:20]
 
 
         return render(request, 'mobileWeb/chatting/fsOe9ms1b_ma.html', {'chattingList': chattingList})
@@ -31,8 +31,8 @@ def fsOe9ms1b_ma(request):
 @csrf_exempt
 def ssOe9ms1b(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='2')\
-                       |Chatting.objects.filter(userId__exact='2')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='2')\
+                       |Chatting.objects.filter(userId__exact='2'))[:20]
 
 
         return render(request, 'mobileWeb/chatting/ssOe9ms1b.html', {'chattingList':chattingList})
@@ -42,8 +42,8 @@ def ssOe9ms1b(request):
 @csrf_exempt
 def ssOe9ms1b_ma(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='2')\
-                       |Chatting.objects.filter(userId__exact='2')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='2')\
+                       |Chatting.objects.filter(userId__exact='2'))[:20]
 
 
         return render(request, 'mobileWeb/chatting/ssOe9ms1b_ma.html', {'chattingList': chattingList})
@@ -54,8 +54,8 @@ def ssOe9ms1b_ma(request):
 @csrf_exempt
 def tsOe9ms1b(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
-                       |Chatting.objects.filter(userId__exact='3')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
+                       |Chatting.objects.filter(userId__exact='3'))[:20]
 
 
         return render(request, 'mobileWeb/chatting/tsOe9ms1b.html', {'chattingList':chattingList})
@@ -65,8 +65,8 @@ def tsOe9ms1b(request):
 @csrf_exempt
 def tsOe9ms1b_ma(request):
     try:
-        chattingList = Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
-                       |Chatting.objects.filter(userId__exact='3')[:20]
+        chattingList = (Chatting.objects.filter(userId__exact='0',partnerId__exact='3')\
+                       |Chatting.objects.filter(userId__exact='3'))[:20]
 
 
         return render(request, 'mobileWeb/chatting/tsOe9ms1b_ma.html', {'chattingList': chattingList})
