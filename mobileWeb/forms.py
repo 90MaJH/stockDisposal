@@ -27,3 +27,8 @@ class ChattingImageUploadForm(forms.ModelForm):
     class Meta:
         model = Chatting
         fields = ['userId','partnerId','photo']
+
+class nabiImageForm(forms.ModelForm):
+    class Meta:
+        model = nabiImage
+        fields = ['photo']

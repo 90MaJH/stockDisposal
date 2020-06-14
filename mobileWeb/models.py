@@ -142,3 +142,6 @@ class Chatting(models.Model):
     ins_user = models.CharField(blank=False, max_length=20, default='ADMIN')
     upt_dttm = models.DateTimeField(blank=False, auto_now=True)
     upt_user = models.CharField(blank=False, max_length=20, default='ADMIN')
+
+class nabiImage(models.Model):
+    photo = models.ImageField(blank=False, null=False, upload_to="images")

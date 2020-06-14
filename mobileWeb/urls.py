@@ -52,7 +52,12 @@ urlpatterns = [
     path('tsOe9ms1b', views.tsOe9ms1b, name='tsOe9ms1b'),
     path('tsOe9ms1b_ma', views.tsOe9ms1b_ma, name='tsOe9ms1b_ma'),
     path('writeChatting', views.writeChatting, name='writeChatting'),
-    path('imageUploadChatting', views.imageUploadChatting, name='imageUploadChatting')
+    path('imageUploadChatting', views.imageUploadChatting, name='imageUploadChatting'),
+
+    #mailBox
+    path('nabiMailbox', views.nabiMailbox, name='nabiMailbox'),
+    path('child1', views.child1, name='child1'),
+    path('imageUpload', views.imageUpload, name='imageUpload'),
 ]
 
 if settings.DEBUG:
