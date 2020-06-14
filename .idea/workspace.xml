@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js/userPages/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +153,7 @@
       <workItem from="1590298225953" duration="5285000" />
       <workItem from="1590623188413" duration="2151000" />
       <workItem from="1591176376732" duration="477000" />
-      <workItem from="1592042365749" duration="3304000" />
+      <workItem from="1592042365749" duration="3558000" />
     </task>
     <servers />
   </component>
