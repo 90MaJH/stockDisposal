@@ -39,6 +39,6 @@ def imageUpload(request):
                 return HttpResponse("error")
         else:
             form = nabiImageForm()
-            return render(request, 'mobileWeb/nabiMailbox/main.html', {'form': form})
+            return render(request, 'mobileWeb/nabiMailbox/imageUpload.html', {'form': form})
     except Exception as ex:
         print("error occured : ", ex)
