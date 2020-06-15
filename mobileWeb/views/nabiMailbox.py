@@ -96,3 +96,9 @@ def child3_3(request):
         return render(request, 'mobileWeb/nabiMailbox/child3_3.html')
     except Exception as ex:
         print("error occured : ", ex)
+
+def memoLetter(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/memoLetter.html')
+    except Exception as ex:
+        print("error occured : ", ex)

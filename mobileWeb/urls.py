@@ -65,6 +65,7 @@ urlpatterns = [
     path('child1_3', views.child1_3, name='child1_3'),
     path('child2_3', views.child2_3, name='child2_3'),
     path('child3_3', views.child3_3, name='child3_3'),
+    path('memoLetter', views.memoLetter, name='memoLetter'),
 
     path('imageUpload', views.imageUpload, name='imageUpload'),
 ]

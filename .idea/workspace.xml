@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/memoLetter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3_3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +119,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django server.stockDisposal" />
       <item itemvalue="Python.manage" />
+      <item itemvalue="Django server.stockDisposal" />
     </list>
   </component>
   <component name="ServiceViewManager">

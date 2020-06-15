@@ -1,0 +1,32 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'mobileWeb/css/base/base.css' %}">
+<link rel="stylesheet" href="{% static 'mobileWeb/css/common/common.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/footer.css' %}">
+
+
+{% include 'mobileWeb/inc/common/docType.html' %}
+<html>
+<head>
+    {% include 'mobileWeb/inc/common/meta.html' %}
+    <title>나비반 우체통</title>
+    {% include 'mobileWeb/inc/common/scriptInclude.html' %}
+
+
+    <style>
+        .children {
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        .list {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<img src="/static/mobileWeb/images/nabiMailbox/memoletter.png" alt="" style="width:100%;">
+</body>
+</html>
+
