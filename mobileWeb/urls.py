@@ -57,6 +57,15 @@ urlpatterns = [
     #mailBox
     path('nabiMailbox', views.nabiMailbox, name='nabiMailbox'),
     path('child1', views.child1, name='child1'),
+    path('child2', views.child2, name='child2'),
+    path('child3', views.child3, name='child3'),
+    path('child1_2', views.child1_2, name='child1_2'),
+    path('child2_2', views.child2_2, name='child2_2'),
+    path('child3_2', views.child3_2, name='child3_2'),
+    path('child1_3', views.child1_3, name='child1_3'),
+    path('child2_3', views.child2_3, name='child2_3'),
+    path('child3_3', views.child3_3, name='child3_3'),
+
     path('imageUpload', views.imageUpload, name='imageUpload'),
 ]
 

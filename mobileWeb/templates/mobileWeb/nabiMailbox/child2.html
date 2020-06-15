@@ -1,0 +1,95 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'mobileWeb/css/base/base.css' %}">
+<link rel="stylesheet" href="{% static 'mobileWeb/css/common/common.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/footer.css' %}">
+
+<style>
+    .children{
+        border-radius: 10px;
+        border : 1px solid black;
+    }
+    .list{
+        width: 50%;
+    }
+</style>
+
+{% include 'mobileWeb/inc/common/docType.html' %}
+<html>
+<head>
+    {% include 'mobileWeb/inc/common/meta.html' %}
+    <title>나비반 우체통</title>
+    {% include 'mobileWeb/inc/common/scriptInclude.html' %}
+
+</head>
+<body>
+<div class="wrapper">
+
+
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-2 padding-false text-center align-self-center">
+                <a href="nabiMailbox">
+                    <i class="fas fa-home fa-lg"></i>
+                </a>
+            </div>
+            <div class="col-8 text-center align-self-center">
+                <h3 style="color:purple;">나비반 우체통</h3>
+            </div>
+            <div class="col-2 padding-false text-center align-self-center">
+                <a href="#">
+                    <i class="fas fa-bars fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <img src="/static/mobileWeb/images/nabiMailbox/child1.png" alt="" class="children">
+        송민국의 우체통
+        <div class="row">
+            <div class="col-3 padding-false text-center align-self-center">
+                <a href="imageUpload">
+                    <img src="/static/mobileWeb/images/nabiMailbox/photo.png" alt="" class="list">
+                </a>
+                <br>
+                영상편지 쓰기
+            </div>
+            <div class="col-3 padding-false text-center align-self-center">
+                <a href="child2_2">
+                    <img src="/static/mobileWeb/images/nabiMailbox/memo.png" alt="" class="list">
+                </a>
+                <br>
+                그림편지 쓰기
+            </div>
+            <div class="col-3 padding-false text-center align-self-center">
+                <a href="child2_3">
+                    <img src="/static/mobileWeb/images/nabiMailbox/mailbox.png" alt="" class="list">
+                </a>
+                <br>
+                편지가 도착했어요.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row row-footer" style="font-size: 9px;">
+            <div class="col-6 text-center">
+                <h5><i class="fas fa-info-circle font-title"></i>&nbsp;나비반 우체통</h5>
+                <span class="smaller font-context">1) 유아 선택</span><br>
+                <span class="smaller font-context">2) 메세지 전송 수단 선택</span><br>
+                <span class="smaller font-context">3) 메세지 보내기</span>
+            </div>
+            <div class="col-6 contact text-center">
+                <h5><i class="far fa-envelope-open font-title"></i>&nbsp;CONTACT</h5>
+                <span class="phone font-context">연세대학교 유아교육 대학원<br>이슬기</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

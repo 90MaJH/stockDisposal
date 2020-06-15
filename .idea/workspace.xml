@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf06b2b2-5096-432b-9fa9-9a54b523d878" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1_3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child2_3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child3_3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/fsOe9ms1b_ma.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/fsOe9ms1b_ma.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/ssOe9ms1b_ma.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/ssOe9ms1b_ma.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/tsOe9ms1b_ma.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/chatting/tsOe9ms1b_ma.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/child1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,19 +58,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox" />
-      <recent name="$PROJECT_DIR$/mobileWeb/views" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index" />
-      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css" />
       <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/js" />
       <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc" />
       <recent name="$PROJECT_DIR$/mobileWeb/static/mobileWeb/css/userPages" />
       <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/userPages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/nabiMailbox" />
+      <recent name="$PROJECT_DIR$/mobileWeb/views" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/userPages/martDetail" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/index" />
+      <recent name="$PROJECT_DIR$/mobileWeb/templates/mobileWeb/inc/common" />
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
@@ -154,7 +161,8 @@
       <workItem from="1590298225953" duration="5285000" />
       <workItem from="1590623188413" duration="2151000" />
       <workItem from="1591176376732" duration="477000" />
-      <workItem from="1592042365749" duration="5218000" />
+      <workItem from="1592042365749" duration="5539000" />
+      <workItem from="1592201823967" duration="1446000" />
     </task>
     <servers />
   </component>
@@ -186,70 +194,70 @@
     <state x="0" y="256" width="831" height="504" key="#xdebugger.evaluate/0.0.1280.800@0.0.1280.800" timestamp="1584802984157" />
     <state x="1342" y="231" key="#xdebugger.evaluate/0.23.1280.738/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585987555410" />
     <state x="108" y="346" key="#xdebugger.evaluate/0.23.1280.738@0.23.1280.738" timestamp="1584617801760" />
-    <state width="832" height="249" key="GridCell.Tab.0.bottom" timestamp="1592121658410">
+    <state width="831" height="249" key="GridCell.Tab.0.bottom" timestamp="1592202888912">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.0.bottom/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516318850" />
     <state width="1194" height="249" key="GridCell.Tab.0.bottom/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585987882740" />
-    <state width="832" height="249" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1592121658410" />
-    <state width="832" height="249" key="GridCell.Tab.0.center" timestamp="1592121658406">
+    <state width="831" height="249" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1592202888912" />
+    <state width="831" height="249" key="GridCell.Tab.0.center" timestamp="1592202888908">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.0.center/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516318845" />
     <state width="1194" height="249" key="GridCell.Tab.0.center/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585987882732" />
-    <state width="832" height="249" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1592121658406" />
-    <state width="832" height="249" key="GridCell.Tab.0.left" timestamp="1592121658404">
+    <state width="831" height="249" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1592202888908" />
+    <state width="831" height="249" key="GridCell.Tab.0.left" timestamp="1592202888907">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.0.left/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516318842" />
     <state width="1194" height="249" key="GridCell.Tab.0.left/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585987882728" />
-    <state width="832" height="249" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1592121658404" />
-    <state width="832" height="249" key="GridCell.Tab.0.right" timestamp="1592121658409">
+    <state width="831" height="249" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1592202888907" />
+    <state width="831" height="249" key="GridCell.Tab.0.right" timestamp="1592202888910">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.0.right/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516318847" />
     <state width="1194" height="249" key="GridCell.Tab.0.right/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585987882733" />
-    <state width="832" height="249" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1592121658409" />
-    <state width="832" height="249" key="GridCell.Tab.1.bottom" timestamp="1592121672982">
+    <state width="831" height="249" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1592202888910" />
+    <state width="831" height="249" key="GridCell.Tab.1.bottom" timestamp="1592203419394">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.1.bottom/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516245986" />
     <state width="1194" height="249" key="GridCell.Tab.1.bottom/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974485583" />
-    <state width="832" height="249" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1592121658185" />
-    <state width="832" height="249" key="GridCell.Tab.1.bottom/0.23.1280.736@0.23.1280.736" timestamp="1592121672982" />
+    <state width="831" height="249" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1592202888591" />
+    <state width="831" height="249" key="GridCell.Tab.1.bottom/0.23.1280.736@0.23.1280.736" timestamp="1592203419394" />
     <state width="1117" height="249" key="GridCell.Tab.1.bottom/0.23.1280.738/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516252971" />
     <state width="1194" height="249" key="GridCell.Tab.1.bottom/0.23.1280.738/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974503605" />
     <state width="736" height="249" key="GridCell.Tab.1.bottom/0.23.1280.738@0.23.1280.738" timestamp="1586412791833" />
     <state width="736" height="249" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1585925846582" />
-    <state width="832" height="249" key="GridCell.Tab.1.center" timestamp="1592121672978">
+    <state width="831" height="249" key="GridCell.Tab.1.center" timestamp="1592203419391">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.1.center/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516245979" />
     <state width="1194" height="249" key="GridCell.Tab.1.center/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974485580" />
-    <state width="832" height="249" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1592121658183" />
-    <state width="832" height="249" key="GridCell.Tab.1.center/0.23.1280.736@0.23.1280.736" timestamp="1592121672978" />
+    <state width="831" height="249" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1592202888589" />
+    <state width="831" height="249" key="GridCell.Tab.1.center/0.23.1280.736@0.23.1280.736" timestamp="1592203419391" />
     <state width="1117" height="249" key="GridCell.Tab.1.center/0.23.1280.738/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516252966" />
     <state width="1194" height="249" key="GridCell.Tab.1.center/0.23.1280.738/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974503601" />
     <state width="736" height="249" key="GridCell.Tab.1.center/0.23.1280.738@0.23.1280.738" timestamp="1586412791829" />
     <state width="736" height="249" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1585925846579" />
-    <state width="832" height="249" key="GridCell.Tab.1.left" timestamp="1592121672976">
+    <state width="831" height="249" key="GridCell.Tab.1.left" timestamp="1592203419389">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.1.left/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516245977" />
     <state width="1194" height="249" key="GridCell.Tab.1.left/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974485578" />
-    <state width="832" height="249" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1592121658182" />
-    <state width="832" height="249" key="GridCell.Tab.1.left/0.23.1280.736@0.23.1280.736" timestamp="1592121672976" />
+    <state width="831" height="249" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1592202888588" />
+    <state width="831" height="249" key="GridCell.Tab.1.left/0.23.1280.736@0.23.1280.736" timestamp="1592203419389" />
     <state width="1117" height="249" key="GridCell.Tab.1.left/0.23.1280.738/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516252965" />
     <state width="1194" height="249" key="GridCell.Tab.1.left/0.23.1280.738/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974503599" />
     <state width="736" height="249" key="GridCell.Tab.1.left/0.23.1280.738@0.23.1280.738" timestamp="1586412791827" />
     <state width="736" height="249" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1585925846576" />
-    <state width="832" height="249" key="GridCell.Tab.1.right" timestamp="1592121672980">
+    <state width="831" height="249" key="GridCell.Tab.1.right" timestamp="1592203419393">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
     <state width="1117" height="249" key="GridCell.Tab.1.right/0.0.1280.800/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516245983" />
     <state width="1194" height="249" key="GridCell.Tab.1.right/0.0.1280.800/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974485582" />
-    <state width="832" height="249" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1592121658184" />
-    <state width="832" height="249" key="GridCell.Tab.1.right/0.23.1280.736@0.23.1280.736" timestamp="1592121672980" />
+    <state width="831" height="249" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1592202888590" />
+    <state width="831" height="249" key="GridCell.Tab.1.right/0.23.1280.736@0.23.1280.736" timestamp="1592203419393" />
     <state width="1117" height="249" key="GridCell.Tab.1.right/0.23.1280.738/1280.-138.1920.1080@1280.-138.1920.1080" timestamp="1586516252968" />
     <state width="1194" height="249" key="GridCell.Tab.1.right/0.23.1280.738/1280.-157.2048.1152@1280.-157.2048.1152" timestamp="1585974503603" />
     <state width="736" height="249" key="GridCell.Tab.1.right/0.23.1280.738@0.23.1280.738" timestamp="1586412791830" />
@@ -274,10 +282,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="298" y="157" width="683" height="486" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1584939028740" />
-    <state x="414" y="-913" width="1005" height="913" key="search.everywhere.popup" timestamp="1584368473258">
-      <screen x="-44" y="-1080" width="1920" height="1080" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1592202648003">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1583994990698" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1592202648003" />
     <state x="414" y="-913" width="1005" height="913" key="search.everywhere.popup/0.0.1440.900/-44.-1080.1920.1080@-44.-1080.1920.1080" timestamp="1584368473258" />
   </component>
   <component name="XDebuggerManager">
@@ -285,13 +293,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mobileWeb/views/nabiMailbox.py</url>
-          <line>28</line>
+          <line>40</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/stockDisposal$manage.coverage" NAME="manage Coverage Results" MODIFIED="1592121658085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/stockDisposal$manage.coverage" NAME="manage Coverage Results" MODIFIED="1592202888531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

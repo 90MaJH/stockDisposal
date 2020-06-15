@@ -23,6 +23,18 @@ def child1(request):
     except Exception as ex:
         print('error occured : ', ex)
 
+def child2(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child2.html')
+    except Exception as ex:
+        print('error occured : ', ex)
+
+def child3(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child3.html')
+    except Exception as ex:
+        print('error occured : ', ex)
+
 
 def imageUpload(request):
     try:
@@ -40,5 +52,47 @@ def imageUpload(request):
         else:
             form = nabiImageForm()
             return render(request, 'mobileWeb/nabiMailbox/imageUpload.html', {'form': form})
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child1_2(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child1_2.html')
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child2_2(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child2_2.html')
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child3_2(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child3_2.html')
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child1_3(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child1_3.html')
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child2_3(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child2_3.html')
+    except Exception as ex:
+        print("error occured : ", ex)
+
+
+def child3_3(request):
+    try:
+        return render(request, 'mobileWeb/nabiMailbox/child3_3.html')
     except Exception as ex:
         print("error occured : ", ex)
