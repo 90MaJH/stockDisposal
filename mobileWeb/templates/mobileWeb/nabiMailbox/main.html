@@ -5,13 +5,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/header.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'mobileWeb/css/common/footer.css' %}">
 
-<style>
-    .children {
-        border: 1px solid black;
-        border-radius: 10px;
-        width: 80%;
-    }
-</style>
 
 {% include 'mobileWeb/inc/common/docType.html' %}
 <html>
@@ -20,6 +13,21 @@
     <title>나비반 우체통</title>
     {% include 'mobileWeb/inc/common/scriptInclude.html' %}
 
+    <style>
+        html {
+            width: 100%;
+        }
+
+        body {
+            margin: auto;
+        }
+
+        .children {
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 80%;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -81,7 +89,7 @@
             </div>
             <div class="col-6 contact text-center">
                 <h5><i class="far fa-envelope-open font-title"></i>&nbsp;CONTACT</h5>
-                <span class="phone font-context">연세대학교 유아교육 대학원<br>이슬기</span>
+                <span class="phone font-context">연세대학교 교육대학원<br>이슬기</span>
             </div>
         </div>
     </div>
